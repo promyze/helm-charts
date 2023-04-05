@@ -5,7 +5,7 @@ Helm's [documentation](https://helm.sh/docs) to get started.
 
 Once Helm has been set up correctly, add the repo as follows:
 
-  helm repo add promyze https://promyze.github.io/helm-charts
+    helm repo add promyze https://promyze.github.io/helm-charts
 
 If you had already added this repo earlier, run `helm repo update` to retrieve
 the latest versions of the packages.  You can then run `helm search repo
@@ -13,7 +13,7 @@ promyze` to see the charts.
 
 To install the promyze chart:
 
-    helm install my-promyze promyze/promyze
+    helm install my-promyze promyze/promyze 
 
 To uninstall the chart:
 
