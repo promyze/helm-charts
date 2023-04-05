@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  selector:
+    matchLabels:
+      component: app
+  template:
+    metadata:
+      labels:
+        component: app
+    spec:
+      containers:
+        - name: app
+          image: {{ .Values.app.image }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3001
+          #livenessProbe:
+          #  httpGet:
+          #    path: /api/alerting/health-check
+          #    port: 3003
+          #  initialDelaySeconds: 530
+          #  periodSeconds: 10
+          env:
+            - name: MONGO_URI
+              value: {{ .Values.app.mongo_uri }}
