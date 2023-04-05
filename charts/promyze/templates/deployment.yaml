@@ -25,4 +25,12 @@ spec:
           #  periodSeconds: 10
           env:
             - name: MONGO_URI
-              value: {{ .Values.app.mongo_uri }}
+              {{- if $.Values.app.mongo.secret }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.mongo.secret.name }}
+                  key: {{ .Values.app.mongo.secret.key }}
+              {{- end }}
+              {{- if $.Values.app.mongo.uri }}
+              value: {{ .Values.app.mongo.uri }}
+              {{- end }}

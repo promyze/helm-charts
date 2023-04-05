@@ -13,7 +13,7 @@ promyze` to see the charts.
 
 To install the promyze chart:
 
-    helm install my-promyze promyze/promyze 
+    helm install my-promyze -f values.yml promyze/promyze 
 
 To uninstall the chart:
 
