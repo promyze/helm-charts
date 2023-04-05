@@ -1,0 +1,20 @@
+app:
+  image: promyze/promyze:latest
+  mongo_uri: mongodb://mongodb:27017/promyze
+
+ingress:
+  enabled: true
+  className: ""
+  annotations: {}
+  tls:
+    enabled: false
+    # secrets:
+    #   app: app-tls-secret # user frontend "learn" ui
+  hostnames:
+    #promyze: k3s.promyze.com
+    ranchervm: {}
+      # frontend: vm.example.com
+      # backend: vmapi.example.com
+
+mongodb:
+  embedded: true
