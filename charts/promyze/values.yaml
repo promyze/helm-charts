@@ -1,6 +1,13 @@
 app:
   image: promyze/promyze:latest
-  mongo_uri: mongodb://mongodb:27017/promyze
+  mongo:
+    uri: mongodb://mongodb:27017/promyze
+    #secret:
+      #name: mongodb-secret
+      #key: mongodb-uri
+
+mongodb:
+  embedded: true
 
 ingress:
   enabled: true
@@ -16,5 +23,3 @@ ingress:
       # frontend: vm.example.com
       # backend: vmapi.example.com
 
-mongodb:
-  embedded: true
