@@ -10,6 +10,7 @@ spec:
     - name: http
       port: 80
       targetPort: 3001
+{{ if .Values.app.databaseEmbedded }}
 ---
 apiVersion: v1
 kind: Service
@@ -21,3 +22,4 @@ spec:
   ports:
     - name: http
       port: 27017
+{{ end }}

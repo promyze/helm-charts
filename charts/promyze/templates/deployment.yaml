@@ -26,14 +26,14 @@ spec:
            periodSeconds: 20
           env:
             - name: MONGO_URI
-              {{- if $.Values.app.mongo.secret }}
+              {{- if .Values.app.databaseUri.value }}
+              value: {{ .Values.app.databaseUri.value }}
+              {{- end }}
+              {{- if .Values.app.databaseUri.secret }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.app.mongo.secret.name }}
-                  key: {{ .Values.app.mongo.secret.key }}
-              {{- end }}
-              {{- if $.Values.app.mongo.uri }}
-              value: {{ .Values.app.mongo.uri }}
+                  name: {{ .Values.app.databaseUri.secret.name }}
+                  key: {{ .Values.app.databaseUri.secret.key }}
               {{- end }}
             {{- range $key, $value := .Values.app.variables }}
             - name: {{ $key }}
@@ -46,7 +46,7 @@ spec:
                   name: {{ $value.secretName }}
                   key: {{ $value.secretKey }}
             {{- end }}
-{{ if .Values.app.mongo.embedded }}
+{{ if .Values.app.databaseEmbedded }}
 ---
 apiVersion: apps/v1
 kind: Deployment
