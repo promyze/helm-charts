@@ -5,6 +5,8 @@ app:
     #secret:
       #name: mongodb-secret
       #key: mongodb-uri
+  variables:
+    PROMYZE_URL: http://my.promyze.com
 
 mongodb:
   embedded: true
@@ -16,10 +18,7 @@ ingress:
   tls:
     enabled: false
     # secrets:
-    #   app: app-tls-secret # user frontend "learn" ui
+    #   app: app-tls-secret 
   hostnames:
-    #promyze: k3s.promyze.com
+    #promyze: my.promyze.com
     ranchervm: {}
-      # frontend: vm.example.com
-      # backend: vmapi.example.com
-

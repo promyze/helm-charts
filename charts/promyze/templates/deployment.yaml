@@ -17,12 +17,12 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3001
-          #livenessProbe:
-          #  httpGet:
-          #    path: /api/alerting/health-check
-          #    port: 3003
-          #  initialDelaySeconds: 530
-          #  periodSeconds: 10
+          livenessProbe:
+           httpGet:
+             path: /open/getPromyzeEnv
+             port: 3001
+           initialDelaySeconds: 30
+           periodSeconds: 20
           env:
             - name: MONGO_URI
               {{- if $.Values.app.mongo.secret }}
@@ -34,3 +34,7 @@ spec:
               {{- if $.Values.app.mongo.uri }}
               value: {{ .Values.app.mongo.uri }}
               {{- end }}
+            {{- range $key, $value := .Values.app.variables }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
