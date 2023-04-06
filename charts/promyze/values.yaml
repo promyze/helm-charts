@@ -1,26 +1,32 @@
 app:
   image: promyze/promyze:latest
-  mongo:
-    embedded: true #use an internal mongodb in the cluster
-    uri: mongodb://mongodb:27017/promyze
-    #secret:
-      #name: mongodb-secret
-      #key: mongodb-uri
+  databaseEmbedded: false # use an internal mongodb in the cluster
+  databaseUri:
+    value:
+    # secret:
+    #   name: mongodb-secret
+    #   key: mongodb-uri
   variables: # check the list on https://hub.docker.com/r/promyze/promyze
-    PROMYZE_URL: http://my.promyze.com
+    # PROMYZE_URL: http://my.promyze.com
   secrets: # env variables injected from secrets
     #- envVariable: THEMIS_AUTH_CONFIG_ADMIN_PASSWORD
     #  secretName: secret-openldap
     #  secretKey: openldap-password
 
 ingress:
-  enabled: true
+  enabled: false
   className: ""
   annotations: {}
   tls:
     enabled: false
     # secrets:
-    #   app: app-tls-secret 
+    #   app: app-tls-secret
   hostnames:
-    #promyze: my.promyze.com
-    ranchervm: {}
+    # app: my.promyze.com
+
+# (optional) install MongoDB server
+mongodb:
+  # experimental: to be validated with MongoDB 5+
+  enabled: false
+  # https://github.com/bitnami/charts/blob/main/bitnami/mongodb/values.yaml
+  auth: {}
