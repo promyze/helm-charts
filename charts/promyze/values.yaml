@@ -1,15 +1,17 @@
 app:
   image: promyze/promyze:latest
   mongo:
+    embedded: true #use an internal mongodb in the cluster
     uri: mongodb://mongodb:27017/promyze
     #secret:
       #name: mongodb-secret
       #key: mongodb-uri
-  variables:
+  variables: # check the list on https://hub.docker.com/r/promyze/promyze
     PROMYZE_URL: http://my.promyze.com
-
-mongodb:
-  embedded: true
+  secrets: # env variables injected from secrets
+    #- envVariable: THEMIS_AUTH_CONFIG_ADMIN_PASSWORD
+    #  secretName: secret-openldap
+    #  secretKey: openldap-password
 
 ingress:
   enabled: true

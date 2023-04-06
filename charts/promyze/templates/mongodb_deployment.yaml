@@ -1,4 +1,4 @@
-{{ if $.Values.mongodb.embedded }}
+{{ if $.Values.app.mongo.embedded }}
 
 apiVersion: apps/v1
 kind: Deployment
