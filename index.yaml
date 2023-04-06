@@ -2,6 +2,25 @@ apiVersion: v1
 entries:
   promyze:
   - apiVersion: v2
+    appVersion: 4.11.0
+    created: "2023-04-06T10:03:12.575074845Z"
+    dependencies:
+    - alias: mongodb
+      condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.1.16
+    description: A Promyze Helm chart for Kubernetes
+    digest: 613a91bdb3a4e75a4426863c2e0a9f159520ed5bd977b578ae576ce97c472d12
+    maintainers:
+    - email: cedric.teyton@promyze.com
+      name: cteyton
+    name: promyze
+    type: application
+    urls:
+    - https://github.com/promyze/helm-charts/releases/download/promyze-0.1.2/promyze-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     appVersion: 1.16.0
     created: "2023-04-05T20:17:48.219614779Z"
     description: A Promyze Helm chart for Kubernetes
@@ -11,4 +30,4 @@ entries:
     urls:
     - https://github.com/promyze/helm-charts/releases/download/promyze-0.1.0/promyze-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-05T20:17:48.219619779Z"
+generated: "2023-04-06T10:03:12.575087745Z"
