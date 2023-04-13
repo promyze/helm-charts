@@ -23,7 +23,7 @@ spec:
              path: /open/getPromyzeEnv
              port: 3001
            initialDelaySeconds: 30
-           periodSeconds: 20
+           periodSeconds: 30
           env:
             - name: MONGO_URI
               {{- if .Values.app.databaseUri.value }}
@@ -46,12 +46,14 @@ spec:
                   name: {{ $value.secretName }}
                   key: {{ $value.secretKey }}
             {{- end }}
-{{ if .Values.app.databaseEmbedded }}
+{{ if .Values.app.databaseEmbedded.enabled }}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb
+  labels:
+    component: mongodb
 spec:
   selector:
     matchLabels:
@@ -62,8 +64,19 @@ spec:
         component: mongodb
     spec:
       containers:
-        - name: mongodb
-          image: mongo:4.4
-          ports:
-            - containerPort: 27017
+      - name: mongodb
+        image: mongo:4.4.1
+        ports:
+          - containerPort: 27017
+        {{ if .Values.app.databaseEmbedded.pvc.enabled }}
+        volumeMounts:
+        - name: mongo-data-dir
+          mountPath: /data/db
+        {{ end }}
+      {{ if .Values.app.databaseEmbedded.pvc.enabled }}
+      volumes:
+      - name: mongo-data-dir
+        persistentVolumeClaim:
+          claimName: mongo-pvc
+      {{ end }}
 {{ end }}
