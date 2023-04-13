@@ -20,7 +20,7 @@ spec:
             - containerPort: 3001
           livenessProbe:
            httpGet:
-             path: /open/getPromyzeEnv
+             path: /open/healthcheck/ping
              port: 3001
            initialDelaySeconds: 30
            periodSeconds: 30
