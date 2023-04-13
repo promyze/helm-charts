@@ -12,7 +12,7 @@ app:
     # secret:
     #   name: mongodb-secret
     #   key: mongodb-uri
-  variables:  # check the list on https://hub.docker.c om/r/promyze/promyze
+  variables:  # check the list on https://hub.docker.com/r/promyze/promyze
     # PROMYZE_URL: http://my.promyze.com
   secrets:  # env variables injected from secrets
   # - envVariable: THEMIS_AUTH_CONFIG_ADMIN_PASSWORD
