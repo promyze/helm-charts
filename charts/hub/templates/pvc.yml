@@ -1,0 +1,15 @@
+{{ if .Values.app.databaseEmbedded.pvc.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-pvc
+spec:
+  {{- if $.Values.app.databaseEmbedded.pvc.storageClassName }}
+  storageClassName: {{ $.Values.app.databaseEmbedded.pvc.storageClassName }}
+  {{- end }}
+  accessModes:
+    - {{ $.Values.app.databaseEmbedded.pvc.accessModes }}
+  resources:
+    requests:
+      storage: {{ $.Values.app.databaseEmbedded.pvc.storage }}
+{{ end }}
