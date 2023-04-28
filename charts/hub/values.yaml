@@ -1,0 +1,35 @@
+app:
+  image: promyze/hub:latest
+  databaseEmbedded:
+    enabled: true  # use an internal mongodb in the cluster
+    pvc:
+      enabled: true
+      storageClassName: local-path
+      storage: 1Gi
+      accessModes: ReadWriteOnce
+  databaseUri:
+    value: mongodb://mongodb:27017/promyze-hub
+    db: promyze-hub
+    # secret:
+    #   name: mongodb-secret
+    #   key: mongodb-uri
+  variables:  # check the list on https://hub.docker.com/r/promyze/hub
+    HUB_URL: http://localhost:3001
+    GITLAB_APP_ID: ef436acc724f34cc29969b07fdb90f1c3ded6ec4e5b3fa12bd233870d23c27ea
+    GITLAB_APP_SECRET: b9fd01620667c9fce3900a94126242494fe06c85e6baa1875a04324431f81e39
+    GITLAB_URL: https://gitlab.com
+  # secrets:  # env variables injected from secrets
+  # - envVariable: GITLAB_APP_ID
+  #   secretName: secret-openldap
+  #   secretKey: openldap-password
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  tls:
+    enabled: false
+    # secrets:
+    #   app: app-tls-secret
+  hostnames:
+    # app: hub.promyze.com

@@ -1,0 +1,11 @@
+apiVersion: v2
+name: hub-promyze
+type: application
+version: 0.1.0
+appVersion: 1.0.0
+description: Hub Promyze - Public soace to share  your coding practices with Promyze
+home: https://github.com/promyze/helm-charts
+maintainers:
+  - name: cteyton
+    email: cedric.teyton@promyze.com
+icon: https://promyze.com/wp-content/uploads/promyze-rocket.png
