@@ -26,19 +26,19 @@ spec:
            periodSeconds: 30
           env:
             - name: MONGODB_URI
-              {{- if .Values.app.databaseUri.value }}
+              {{ if .Values.app.databaseUri.value }}
               value: {{ .Values.app.databaseUri.value }}
-              {{- end }}
-              {{- if .Values.app.databaseUri.secret }}
+              {{ end }}
+              {{ if .Values.app.databaseUri.secret }}
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.app.databaseUri.secret.name }}
                   key: {{ .Values.app.databaseUri.secret.key }}
-              {{- end }}
+              {{ end }}
             - name: MONGODB_DB
-              { { - if .Values.app.databaseUri.db } }
-              value: { { .Values.app.databaseUri.db } }
-              { { - end } }
+              {{ if .Values.app.databaseUri.db }}
+              value: { { .Values.app.databaseUri.db }}
+              {{ end } }
             {{- range $key, $value := .Values.app.variables }}
             - name: {{ $key }}
               value: {{ $value | quote }}
