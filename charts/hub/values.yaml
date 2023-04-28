@@ -18,7 +18,7 @@ app:
     GITLAB_APP_ID: 1234ABC
     GITLAB_APP_SECRET: 97GVF7E0
     GITLAB_URL: https://gitlab.com
-  #secrets:  # env variables injected from secrets
+  # secrets:  # env variables injected from secrets
   # - envVariable: GITLAB_APP_ID
   #   secretName: secret-openldap
   #   secretKey: openldap-password
