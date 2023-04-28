@@ -1,9 +1,9 @@
 apiVersion: v2
 name: hub-promyze
 type: application
-version: 1.0
-appVersion: 1.0
-description: Hub Promyze - Public soace to share  your coding practices with Promyze
+version: 1.0.0
+appVersion: 1.0.0
+description: Hub Promyze - Public hub to share your coding practices with Promyze
 home: https://github.com/promyze/helm-charts
 maintainers:
   - name: cteyton
