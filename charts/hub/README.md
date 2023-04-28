@@ -55,8 +55,14 @@ app:
 To install the chart:
 
 ```bash
-helm upgrade --install promyze-hub promyze/promyze-hub --create-namespace --namespace promyze
+helm upgrade -f values.yaml --install promyze-hub promyze/promyze-hub --create-namespace --namespace promyze-hub
 ```
+
+Access it:
+
+```bash
+kubectl port-forward service/app 3001:80 -n promyze-hub
+``` 
 
 To uninstall the chart and clean-up the cluster:
 

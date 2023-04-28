@@ -37,8 +37,8 @@ spec:
               {{ end }}
             - name: MONGODB_DB
               {{ if .Values.app.databaseUri.db }}
-              value: { { .Values.app.databaseUri.db }}
-              {{ end } }
+              value: {{ .Values.app.databaseUri.db }}
+              {{ end }}
             {{- range $key, $value := .Values.app.variables }}
             - name: {{ $key }}
               value: {{ $value | quote }}
