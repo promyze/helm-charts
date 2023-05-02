@@ -103,7 +103,7 @@ Environment variables for the Docker image are described on the [Documentation](
 To uninstall the chart and clean-up the cluster:
 
 ```bash
-helm delete promyze
+helm delete hub-promyze
 kubectl delete ns promyze
 ```
 
