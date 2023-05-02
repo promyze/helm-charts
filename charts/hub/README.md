@@ -1,6 +1,7 @@
 # Helm chart for Promyze
 
-This Helm chart will the Hub Promyze: https://hub.docker.com/r/promyze/hub
+This Helm chart will run the [Hub Promyze](https://hub.docker.com/r/promyze/hub) on a self-hosted version.
+
 ## Usage
 
 [Helm](https://helm.sh) must be installed to use the charts. Please refer to Helm's [documentation](https://helm.sh/docs) to get started.
@@ -47,7 +48,7 @@ Before installing the chart, you can check the default **values** [here](https:/
 
 You have 2 options to deal with MongoDB.
 
-### 1. Use the embedded MongoDB 4.x
+### 1. Use the embedded MongoDB 4.x (default mode)
 
 Setting the `app.databaseEmbedded.enabled` at `true` will run a MongoDB instance in the cluster.
 
@@ -78,26 +79,6 @@ app:
     #   key: mongodb-uri
 ```
 
-## Run the chart
-
-To install the chart:
-
-```bash
-helm upgrade -f values.yaml --install hub-promyze promyze/hub-promyze --create-namespace --namespace promyze
-```
-
-Access it:
-
-```bash
-kubectl port-forward service/app 3001:80 -n promyze
-``` 
-
-To uninstall the chart and clean-up the cluster:
-
-```bash
-helm delete promyze
-kubectl delete ns promyze
-```
 
 ### Real scenario with cert-manager, Let's Encrypt & NGINX Ingress Controller
 
@@ -111,3 +92,18 @@ helm upgrade --install hub-promyze . -f values.yaml --create-namespace \
   --set ingress.hostnames.app=hub-promyze.${NGINX_PUBLIC_IP}.sslip.io \
   --namespace promyze
 ```
+
+
+## Other settings
+
+Environment variables for the Docker image are described on the [Documentation](https://hub.docker.com/r/promyze/hub).
+
+## Remove the chart
+
+To uninstall the chart and clean-up the cluster:
+
+```bash
+helm delete promyze
+kubectl delete ns promyze
+```
+
