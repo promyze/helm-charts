@@ -50,6 +50,58 @@ spec:
                   name: {{ $value.secretName }}
                   key: {{ $value.secretKey }}
             {{- end }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  selector:
+    matchLabels:
+      component: app
+  template:
+    metadata:
+      labels:
+        component: app
+    spec:
+      containers:
+        - name: app
+          image: {{ .Values.app.image }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3001
+          livenessProbe:
+           httpGet:
+             path: /
+             port: 3001
+           initialDelaySeconds: 30
+           periodSeconds: 30
+          env:
+            - name: MONGODB_URI
+              {{ if .Values.app.databaseUri.value }}
+              value: {{ .Values.app.databaseUri.value }}
+              {{ end }}
+              {{ if .Values.app.databaseUri.secret }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.databaseUri.secret.name }}
+                  key: {{ .Values.app.databaseUri.secret.key }}
+              {{ end }}
+            - name: MONGODB_DB
+              {{ if .Values.app.databaseUri.db }}
+              value: {{ .Values.app.databaseUri.db }}
+              {{ end }}
+            {{- range $key, $value := .Values.app.variables }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- range $key, $value := .Values.app.secrets }}
+            - name: {{ $value.envVariable }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $value.secretName }}
+                  key: {{ $value.secretKey }}
+            {{- end }}
 {{ if .Values.app.databaseEmbedded.enabled }}
 ---
 apiVersion: apps/v1
