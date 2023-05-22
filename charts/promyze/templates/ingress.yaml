@@ -17,10 +17,31 @@ spec:
       http:
         paths:
           - pathType: Prefix
+            path: "/api/plugin"
+            backend:
+              service:
+                name: promyze-suggestions
+                port:
+                  number: 3000
+          - pathType: Prefix
+            path: "/api/suggestion"
+            backend:
+              service:
+                name: promyze-suggestions
+                port:
+                  number: 3000
+          - pathType: Prefix
+            path: "/api"
+            backend:
+              service:
+                name: promyze-api
+                port:
+                  number: 3000
+          - pathType: Prefix
             path: "/"
             backend:
               service:
-                name: app
+                name: front
                 port:
                   number: 80
   {{- if $.Values.ingress.tls.enabled }}

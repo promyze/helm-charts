@@ -1,7 +1,7 @@
 apiVersion: v2
 name: hub-promyze
 type: application
-version: 1.0.0
+version: 1.0.1
 appVersion: 1.0.0
 description: Hub Promyze - Public hub to share your coding practices with Promyze
 home: https://github.com/promyze/helm-charts

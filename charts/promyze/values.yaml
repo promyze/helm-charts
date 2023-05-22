@@ -1,5 +1,14 @@
 app:
-  image: promyze/promyze:4.11.1
+  images:
+    api: promyze/promyze-api
+    proxy: promyze/promyze-proxy
+    suggestions: promyze/promyze-suggestions
+    engine: promyze/promyze-engine
+    tag: 4.12.0
+  front:
+    replicas: 1
+  suggestions:
+    replicas: 2
   databaseEmbedded:
     enabled: true  # use an internal mongodb in the cluster
     pvc:
@@ -29,7 +38,6 @@ ingress:
     #   app: app-tls-secret
   hostnames:
     # app: my.promyze.com
-
 # (optional) install MongoDB server
 mongodb:
   # experimental: to be validated with MongoDB 5+
