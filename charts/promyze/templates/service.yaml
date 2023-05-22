@@ -2,14 +2,50 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: app
+  name: promyze-api
 spec:
   selector:
     component: app
   ports:
     - name: http
+      port: 3000
+      targetPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: front
+spec:
+  selector:
+    component: front
+  ports:
+    - name: http
       port: 80
       targetPort: 3001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: promyze-suggestions
+spec:
+  selector:
+    component: suggestions
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: promyze-engine
+spec:
+  selector:
+    component: engine
+  ports:
+    - name: http
+      port: 4567
+      targetPort: 4567
 {{ if .Values.app.databaseEmbedded.enabled }}
 ---
 apiVersion: v1

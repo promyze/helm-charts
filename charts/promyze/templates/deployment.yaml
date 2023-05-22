@@ -2,6 +2,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: front
+spec:
+  replicas: {{ .Values.app.front.replicas }}
+  selector:
+    matchLabels:
+      component: front
+  template:
+    metadata:
+      labels:
+        component: front
+    spec:
+      containers:
+        - name: front
+          image: {{ .Values.app.images.proxy }}:{{ .Values.app.images.tag }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3001
+          livenessProbe:
+           httpGet:
+             path: /
+             port: 3001
+           initialDelaySeconds: 30
+           periodSeconds: 30
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: app
 spec:
   selector:
@@ -14,14 +41,63 @@ spec:
     spec:
       containers:
         - name: app
-          image: {{ .Values.app.image }}
+          image: {{ .Values.app.images.api }}:{{ .Values.app.images.tag }}
           imagePullPolicy: Always
           ports:
-            - containerPort: 3001
+            - containerPort: 3000
           livenessProbe:
            httpGet:
              path: /open/healthcheck/ping
-             port: 3001
+             port: 3000
+           initialDelaySeconds: 30
+           periodSeconds: 30
+          env:
+            - name: MONGO_URI
+              {{- if .Values.app.databaseUri.value }}
+              value: {{ .Values.app.databaseUri.value }}
+              {{- end }}
+              {{- if .Values.app.databaseUri.secret }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.databaseUri.secret.name }}
+                  key: {{ .Values.app.databaseUri.secret.key }}
+              {{- end }}
+            {{- range $key, $value := .Values.app.variables }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- range $key, $value := .Values.app.secrets }}
+            - name: {{ $value.envVariable }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $value.secretName }}
+                  key: {{ $value.secretKey }}
+            {{- end }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: suggestions
+spec:
+  replicas: {{ .Values.app.suggestions.replicas }}
+  selector:
+    matchLabels:
+      component: suggestions
+  template:
+    metadata:
+      labels:
+        component: suggestions
+    spec:
+      containers:
+        - name: suggestions
+          image: {{ .Values.app.images.suggestions }}:{{ .Values.app.images.tag }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          livenessProbe:
+           httpGet:
+             path: /open/healthcheck/ping
+             port: 3000
            initialDelaySeconds: 30
            periodSeconds: 30
           env:
@@ -47,6 +123,48 @@ spec:
                   key: {{ $value.secretKey }}
             {{- end }}
 {{ if .Values.app.databaseEmbedded.enabled }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: engine
+spec:
+  selector:
+    matchLabels:
+      component: engine
+  template:
+    metadata:
+      labels:
+        component: engine
+    spec:
+      containers:
+        - name: engine
+          image: {{ .Values.app.images.engine }}:{{ .Values.app.images.tag }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4567
+          env:
+            - name: MONGO_URI
+              {{- if .Values.app.databaseUri.value }}
+              value: {{ .Values.app.databaseUri.value }}
+              {{- end }}
+              {{- if .Values.app.databaseUri.secret }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.databaseUri.secret.name }}
+                  key: {{ .Values.app.databaseUri.secret.key }}
+              {{- end }}
+            {{- range $key, $value := .Values.app.variables }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- range $key, $value := .Values.app.secrets }}
+            - name: {{ $value.envVariable }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $value.secretName }}
+                  key: {{ $value.secretKey }}
+            {{- end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
