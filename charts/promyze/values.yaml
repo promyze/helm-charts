@@ -12,10 +12,10 @@ app:
   databaseEmbedded:
     enabled: true  # use an internal mongodb in the cluster
     pvc:
-      enabled: false
-      # storageClassName: local-path
-      # storage: 1Gi
-      # accessModes: ReadWriteOnce
+      enabled: true
+      storageClassName: local-path
+      storage: 1Gi
+      accessModes: ReadWriteOnce
   databaseUri:
     value: "mongodb://mongodb:27017/promyze"
     # secret:
