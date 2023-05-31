@@ -36,7 +36,7 @@ app:
 
 The `app.databaseEmbedded.enabled` at `true` will run a MongoDB instance in the cluster.
 
-There is a section `app.databaseEmbedded.pvc` to deal with the persistent storage, disabled by default.
+There is a section `app.databaseEmbedded.pvc` to deal with the persistent storage, enabled by default.
 
 ### 2. Use your instance MongoDB 4.x
 
