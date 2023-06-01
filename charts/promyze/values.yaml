@@ -1,4 +1,4 @@
-app:
+﻿app:
   images:
     api: promyze/promyze-api
     proxy: promyze/promyze-proxy
@@ -32,11 +32,12 @@ ingress:
   enabled: false
   className: ""
   annotations: {}
+  labels: {}
   tls:
     enabled: false
     # secrets:
     #   app: app-tls-secret
-  hostnames:
+  hostnames: {}
     # app: my.promyze.com
 # (optional) install MongoDB server
 mongodb:

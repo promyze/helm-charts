@@ -8,12 +8,16 @@ metadata:
   {{- range $key, $value := .Values.ingress.annotations }}
     {{ $key }}: {{ $value | quote }}
   {{- end }}
+  labels:
+  {{- with .Values.ingress.labels }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   {{- if $.Values.ingress.className }}
   ingressClassName: {{ $.Values.ingress.className }}
   {{- end }}
   rules:
-    - host: {{ $.Values.ingress.hostnames.promyze }}
+    - host: {{ $.Values.ingress.hostnames.app }}
       http:
         paths:
           - pathType: Prefix
