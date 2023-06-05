@@ -29,7 +29,7 @@ helm upgrade --install promyze-beta . -f values.yaml --create-namespace \
 kubectl port-forward service/promyze-beta-mongodb 27017:27017 -n promyze-beta
 
 # forwards Promyze port for local access
-kubectl port-forward service/app 3001:80 -n promyze-beta
+kubectl port-forward service/front 3001:80 -n promyze-beta
 
 # accesses Promyze with http://localhost:3001/
 curl http://localhost:3001/
