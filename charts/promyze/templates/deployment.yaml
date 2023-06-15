@@ -122,7 +122,6 @@ spec:
                   name: {{ $value.secretName }}
                   key: {{ $value.secretKey }}
             {{- end }}
-{{ if .Values.app.databaseEmbedded.enabled }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -165,6 +164,7 @@ spec:
                   name: {{ $value.secretName }}
                   key: {{ $value.secretKey }}
             {{- end }}
+{{ if .Values.app.databaseEmbedded.enabled }}
 ---
 apiVersion: apps/v1
 kind: Deployment
