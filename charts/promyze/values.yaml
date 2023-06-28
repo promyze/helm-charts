@@ -4,11 +4,13 @@
     proxy: promyze/promyze-proxy
     suggestions: promyze/promyze-suggestions
     engine: promyze/promyze-engine
-    tag: 4.12.0
+    tag: 4.12.1
   front:
     replicas: 1
   suggestions:
     replicas: 2
+  engineLegacy:
+    enabled: false
   databaseEmbedded:
     enabled: true  # use an internal mongodb in the cluster
     pvc:
@@ -29,7 +31,7 @@
   #   secretKey: openldap-password
 
 ingress:
-  enabled: false
+  enabled: true
   className: ""
   annotations: {}
   labels: {}
@@ -37,8 +39,8 @@ ingress:
     enabled: false
     # secrets:
     #   app: app-tls-secret
-  hostnames: {}
-    # app: my.promyze.com
+  hostnames: 
+    app: my.promyze.local
 # (optional) install MongoDB server
 mongodb:
   # experimental: to be validated with MongoDB 5+
