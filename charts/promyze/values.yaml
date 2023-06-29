@@ -39,7 +39,7 @@ ingress:
     enabled: false
     # secrets:
     #   app: app-tls-secret
-  hostnames: 
+  hostnames:
     app: my.promyze.local
 # (optional) install MongoDB server
 mongodb:
