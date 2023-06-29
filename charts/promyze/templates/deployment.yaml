@@ -19,12 +19,15 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 3001
+          env:
+            - name: K8S 
+              value: 'true'
           livenessProbe:
-           httpGet:
-             path: /
-             port: 3001
-           initialDelaySeconds: 30
-           periodSeconds: 30
+            httpGet:
+              path: /
+              port: 3001
+            initialDelaySeconds: 30
+            periodSeconds: 30
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -52,6 +55,10 @@ spec:
            initialDelaySeconds: 30
            periodSeconds: 30
           env:
+            {{- if eq .Values.app.engineLegacy.enabled false}}
+            - name: NO_ENGINE
+              value: 'true'
+            {{- end }}
             - name: MONGO_URI
               {{- if .Values.app.databaseUri.value }}
               value: {{ .Values.app.databaseUri.value }}
@@ -122,6 +129,7 @@ spec:
                   name: {{ $value.secretName }}
                   key: {{ $value.secretKey }}
             {{- end }}
+{{ if .Values.app.engineLegacy.enabled }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -164,6 +172,7 @@ spec:
                   name: {{ $value.secretName }}
                   key: {{ $value.secretKey }}
             {{- end }}
+{{ end }}
 {{ if .Values.app.databaseEmbedded.enabled }}
 ---
 apiVersion: apps/v1

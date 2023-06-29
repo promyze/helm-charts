@@ -56,7 +56,7 @@ app:
 
 ## Access Promyze 
 
-Check the [Contributing](docs/CONTRIBUTING.md) guide to see how to use either **port-forward** or **ingress** to connect to Promyze.
+Check the [Contributing](docs/CONTRIBUTING.md) guide to see how to use  **ingress** to connect to Promyze.
 
 ## Run the chart 
 

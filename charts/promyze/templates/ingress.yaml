@@ -42,6 +42,20 @@ spec:
                 port:
                   number: 3000
           - pathType: Prefix
+            path: "/open"
+            backend:
+              service:
+                name: promyze-api
+                port:
+                  number: 3000
+          - pathType: Prefix
+            path: "/auth"
+            backend:
+              service:
+                name: promyze-api
+                port:
+                  number: 3000
+          - pathType: Prefix
             path: "/"
             backend:
               service:
