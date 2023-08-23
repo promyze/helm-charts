@@ -56,6 +56,13 @@ spec:
                 port:
                   number: 3000
           - pathType: Prefix
+            path: "/public"
+            backend:
+              service:
+                name: promyze-api
+                port:
+                  number: 3000
+          - pathType: Prefix
             path: "/"
             backend:
               service:
