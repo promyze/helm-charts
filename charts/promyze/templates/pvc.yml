@@ -1,4 +1,4 @@
-{{ if .Values.app.databaseEmbedded.pvc.enabled }}
+{{ if and .Values.app.databaseEmbedded.enabled .Values.app.databaseEmbedded.pvc.enabled }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
