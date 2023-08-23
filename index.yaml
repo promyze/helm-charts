@@ -34,6 +34,21 @@ entries:
   promyze:
   - apiVersion: v2
     appVersion: 4.12.1
+    created: "2023-08-23T08:05:11.40911425Z"
+    description: Raise your own best coding practices with Promyze
+    digest: e5732f60fd3f6e3ce4cb1d6dc6e2eeee8967ce10469c5a81c1f7635717f7aec0
+    home: https://github.com/promyze/helm-charts
+    icon: https://promyze.com/wp-content/uploads/promyze-rocket.png
+    maintainers:
+    - email: cedric.teyton@promyze.com
+      name: cteyton
+    name: promyze
+    type: application
+    urls:
+    - https://github.com/promyze/helm-charts/releases/download/promyze-0.3.6/promyze-0.3.6.tgz
+    version: 0.3.6
+  - apiVersion: v2
+    appVersion: 4.12.1
     created: "2023-08-23T07:21:49.793043039Z"
     description: Raise your own best coding practices with Promyze
     digest: 82e8fe03e3febb522542b73c8ea20c1aaf4ab4c1c31b93c9b265894a4b8036fe
@@ -166,4 +181,4 @@ entries:
     urls:
     - https://github.com/promyze/helm-charts/releases/download/promyze-0.1.0/promyze-0.1.0.tgz
     version: 0.1.0
-generated: "2023-08-23T07:21:49.793106339Z"
+generated: "2023-08-23T08:05:11.409153552Z"
