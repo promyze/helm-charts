@@ -15,7 +15,11 @@ spec:
     spec:
       containers:
         - name: front
+          {{- if .Values.app.images.tag }}
           image: {{ .Values.app.images.proxy }}:{{ .Values.app.images.tag }}
+          {{ else }}
+          image: {{ .Values.app.images.proxy }}
+          {{- end }}
           {{- if .Values.app.images.imagePullPolicy }}
           imagePullPolicy:  {{ .Values.app.images.imagePullPolicy }}
           {{- end }}
@@ -30,6 +34,10 @@ spec:
               port: 3001
             initialDelaySeconds: 30
             periodSeconds: 30
+      {{- if and .Values.app.images.secret .Values.app.images.secret.name }}
+      imagePullSecrets:
+        - name: {{ .Values.app.images.secret.name }}
+      {{- end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -50,7 +58,11 @@ spec:
           command: ['sh', '-c', 'echo Wait for mongoDB to be up and running; sleep 30;']
       containers:
         - name: app
+          {{- if .Values.app.images.tag }}
           image: {{ .Values.app.images.api }}:{{ .Values.app.images.tag }}
+          {{- else }}
+          image: {{ .Values.app.images.api }}
+          {{- end }}
           {{- if .Values.app.images.imagePullPolicy }}
           imagePullPolicy:  {{ .Values.app.images.imagePullPolicy }}
           {{- end }}
@@ -88,6 +100,10 @@ spec:
                   name: {{ $value.secretName }}
                   key: {{ $value.secretKey }}
             {{- end }}
+      {{- if and .Values.app.images.secret .Values.app.images.secret.name }}
+      imagePullSecrets:
+        - name: {{ .Values.app.images.secret.name }}
+      {{- end }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -109,10 +125,14 @@ spec:
           command: ['sh', '-c', 'echo Wait for mongoDB to be up and running; sleep 30;']
       containers:
         - name: suggestions
+          {{- if .Values.app.images.tag }}
           image: {{ .Values.app.images.suggestions }}:{{ .Values.app.images.tag }}
+          {{ else }}
+          image: {{ .Values.app.images.suggestions }}
+          {{- end }}
           {{- if .Values.app.images.imagePullPolicy }}
           imagePullPolicy:  {{ .Values.app.images.imagePullPolicy }}
-           {{- end }}
+          {{- end }}
           ports:
             - containerPort: 3000
           livenessProbe:
@@ -143,6 +163,10 @@ spec:
                   name: {{ $value.secretName }}
                   key: {{ $value.secretKey }}
             {{- end }}
+      {{- if and .Values.app.images.secret .Values.app.images.secret.name }}
+      imagePullSecrets:
+        - name: {{ .Values.app.images.secret.name }}
+      {{- end }}
 {{ if .Values.app.engineLegacy.enabled }}
 ---
 apiVersion: apps/v1
@@ -160,8 +184,14 @@ spec:
     spec:
       containers:
         - name: engine
+          {{- if .Values.app.images.tag }}
           image: {{ .Values.app.images.engine }}:{{ .Values.app.images.tag }}
-          imagePullPolicy: Always
+          {{ else }}
+          image: {{ .Values.app.images.engine }}
+          {{- end }}
+          {{- if .Values.app.images.imagePullPolicy }}
+          imagePullPolicy:  {{ .Values.app.images.imagePullPolicy }}
+          {{- end }}
           ports:
             - containerPort: 4567
           env:
@@ -186,6 +216,9 @@ spec:
                   name: {{ $value.secretName }}
                   key: {{ $value.secretKey }}
             {{- end }}
+      imagePullSecrets:
+        - name: {{ .Values.app.images.secret.name }}
+        {{- end }}
 {{ end }}
 {{ if .Values.app.databaseEmbedded.enabled }}
 ---
