@@ -216,9 +216,10 @@ spec:
                   name: {{ $value.secretName }}
                   key: {{ $value.secretKey }}
             {{- end }}
+      {{- if and .Values.app.images.secret .Values.app.images.secret.name }}
       imagePullSecrets:
         - name: {{ .Values.app.images.secret.name }}
-        {{- end }}
+      {{- end }}
 {{ end }}
 {{ if .Values.app.databaseEmbedded.enabled }}
 ---
