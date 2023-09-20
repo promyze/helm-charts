@@ -16,7 +16,9 @@ spec:
       containers:
         - name: front
           image: {{ .Values.app.images.proxy }}:{{ .Values.app.images.tag }}
-          imagePullPolicy: Always
+          {{- if .Values.app.images.imagePullPolicy }}
+          imagePullPolicy:  {{ .Values.app.images.imagePullPolicy }}
+          {{- end }}
           ports:
             - containerPort: 3001
           env:
@@ -49,7 +51,9 @@ spec:
       containers:
         - name: app
           image: {{ .Values.app.images.api }}:{{ .Values.app.images.tag }}
-          imagePullPolicy: Always
+          {{- if .Values.app.images.imagePullPolicy }}
+          imagePullPolicy:  {{ .Values.app.images.imagePullPolicy }}
+          {{- end }}
           ports:
             - containerPort: 3000
           livenessProbe:
@@ -106,7 +110,9 @@ spec:
       containers:
         - name: suggestions
           image: {{ .Values.app.images.suggestions }}:{{ .Values.app.images.tag }}
-          imagePullPolicy: Always
+          {{- if .Values.app.images.imagePullPolicy }}
+          imagePullPolicy:  {{ .Values.app.images.imagePullPolicy }}
+           {{- end }}
           ports:
             - containerPort: 3000
           livenessProbe:

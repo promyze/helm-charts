@@ -5,6 +5,7 @@
     suggestions: promyze/promyze-suggestions
     engine: promyze/promyze-engine
     tag: 4.12.1
+    #imagePullPolicy: Always
   front:
     replicas: 1
   suggestions:
