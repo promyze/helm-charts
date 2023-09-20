@@ -1,7 +1,7 @@
 apiVersion: v2
 name: promyze
 type: application
-version: 0.3.6
+version: 0.3.7
 appVersion: 4.12.1
 description: Raise your own best coding practices with Promyze
 home: https://github.com/promyze/helm-charts
