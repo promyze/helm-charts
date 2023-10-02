@@ -12,6 +12,10 @@ spec:
     metadata:
       labels:
         component: front
+      annotations:
+      {{- range $key, $value := .Values.app.annotations }}
+        {{ $key }}: {{ $value | quote }}
+      {{- end }}
     spec:
       containers:
         - name: front
@@ -26,7 +30,7 @@ spec:
           ports:
             - containerPort: 3001
           env:
-            - name: K8S 
+            - name: K8S
               value: 'true'
           livenessProbe:
             httpGet:
@@ -51,6 +55,10 @@ spec:
     metadata:
       labels:
         component: app
+      annotations:
+      {{- range $key, $value := .Values.app.annotations }}
+        {{ $key }}: {{ $value | quote }}
+      {{- end }}
     spec:
       initContainers:
         - name: init-container-app
@@ -118,6 +126,10 @@ spec:
     metadata:
       labels:
         component: suggestions
+      annotations:
+      {{- range $key, $value := .Values.app.annotations }}
+        {{ $key }}: {{ $value | quote }}
+      {{- end }}
     spec:
       initContainers:
         - name: init-container-suggestions
@@ -181,6 +193,10 @@ spec:
     metadata:
       labels:
         component: engine
+      annotations:
+      {{- range $key, $value := .Values.app.annotations }}
+        {{ $key }}: {{ $value | quote }}
+      {{- end }}
     spec:
       containers:
         - name: engine
@@ -237,6 +253,10 @@ spec:
     metadata:
       labels:
         component: mongodb
+      annotations:
+      {{- range $key, $value := .Values.app.annotations }}
+        {{ $key }}: {{ $value | quote }}
+      {{- end }}
     spec:
       containers:
       - name: mongodb
