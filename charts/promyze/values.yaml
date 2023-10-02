@@ -9,6 +9,7 @@
     # secret:
       # name: docker-registry-key
       # dockerconfigjson:
+  annotations: {} #annotations to add on Promyze pods
   front:
     replicas: 1
   suggestions:
