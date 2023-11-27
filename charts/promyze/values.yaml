@@ -10,7 +10,7 @@
       # name: docker-registry-key
       # dockerconfigjson:
   annotations: {}  # annotations to add on Promyze deployments
-  labels: {} # annotations to add on Promyze deployments
+  labels: {}  # annotations to add on Promyze deployments
   front:
     replicas: 1
   suggestions:
@@ -38,7 +38,7 @@
 
 services:
   annotations: {}  # annotations to add on Promyze services
-  labels: {} # annotations to add on Promyze services
+  labels: {}  # annotations to add on Promyze services
 
 ingress:
   enabled: true
