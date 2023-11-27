@@ -9,7 +9,8 @@
     # secret:
       # name: docker-registry-key
       # dockerconfigjson:
-  annotations: {}  # annotations to add on Promyze pods
+  annotations: {}  # annotations to add on Promyze deployments
+  labels: {} # annotations to add on Promyze deployments
   front:
     replicas: 1
   suggestions:
@@ -34,6 +35,10 @@
   # - envVariable: THEMIS_AUTH_CONFIG_ADMIN_PASSWORD
   #   secretName: secret-openldap
   #   secretKey: openldap-password
+
+services:
+  annotations: {}  # annotations to add on Promyze services
+  labels: {} # annotations to add on Promyze services
 
 ingress:
   enabled: true
