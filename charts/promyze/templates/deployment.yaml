@@ -12,6 +12,9 @@ spec:
     metadata:
       labels:
         component: front
+        {{- range $key, $value := .Values.app.labels }}
+          {{ $key }}: {{ $value | quote }}
+        {{- end }}
       annotations:
       {{- range $key, $value := .Values.app.annotations }}
         {{ $key }}: {{ $value | quote }}
@@ -55,6 +58,9 @@ spec:
     metadata:
       labels:
         component: app
+        {{- range $key, $value := .Values.app.labels }}
+          {{ $key }}: {{ $value | quote }}
+        {{- end }}
       annotations:
       {{- range $key, $value := .Values.app.annotations }}
         {{ $key }}: {{ $value | quote }}
@@ -126,6 +132,9 @@ spec:
     metadata:
       labels:
         component: suggestions
+        {{- range $key, $value := .Values.app.labels }}
+          {{ $key }}: {{ $value | quote }}
+        {{- end }}
       annotations:
       {{- range $key, $value := .Values.app.annotations }}
         {{ $key }}: {{ $value | quote }}
@@ -193,6 +202,9 @@ spec:
     metadata:
       labels:
         component: engine
+        {{- range $key, $value := .Values.app.labels }}
+          {{ $key }}: {{ $value | quote }}
+        {{- end }}
       annotations:
       {{- range $key, $value := .Values.app.annotations }}
         {{ $key }}: {{ $value | quote }}
@@ -245,6 +257,9 @@ metadata:
   name: mongodb
   labels:
     component: mongodb
+    {{- range $key, $value := .Values.app.labels }}
+      {{ $key }}: {{ $value | quote }}
+    {{- end }}
 spec:
   selector:
     matchLabels:

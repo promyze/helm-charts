@@ -3,6 +3,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: promyze-api
+  labels:
+    component: app
+    {{- range $key, $value := .Values.services.labels }}
+      {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  annotations:
+    {{- range $key, $value := .Values.services.annotations }}
+      {{ $key }}: {{ $value | quote }}
+    {{- end }}
 spec:
   selector:
     component: app
@@ -15,6 +24,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: front
+  labels:
+    component: front
+  {{- range $key, $value := .Values.services.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  annotations:
+  {{- range $key, $value := .Values.services.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
 spec:
   selector:
     component: front
@@ -27,6 +45,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: promyze-suggestions
+  labels:
+    component: suggestions
+    {{- range $key, $value := .Values.services.labels }}
+      {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  annotations:
+  {{- range $key, $value := .Values.services.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
 spec:
   selector:
     component: suggestions
@@ -39,6 +66,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: promyze-engine
+  labels:
+    component: engine
+    {{- range $key, $value := .Values.services.labels }}
+      {{ $key }}: {{ $value | quote }}
+    {{- end }}
+    annotations:
+  {{- range $key, $value := .Values.services.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
 spec:
   selector:
     component: engine
@@ -52,6 +88,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mongodb
+  labels:
+    component: suggestions
+     {{- range $key, $value := .Values.services.labels }}
+       {{ $key }}: {{ $value | quote }}
+     {{- end }}
+  annotations:
+  {{- range $key, $value := .Values.services.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
 spec:
   selector:
     component: mongodb
