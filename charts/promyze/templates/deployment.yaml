@@ -30,6 +30,10 @@ spec:
           {{- if .Values.app.images.imagePullPolicy }}
           imagePullPolicy:  {{ .Values.app.images.imagePullPolicy }}
           {{- end }}
+          {{- if .Values.app.resources.front }}
+          resources:
+            {{- toYaml .Values.app.resources.front | nindent 12 }}
+          {{- end }}
           ports:
             - containerPort: 3001
           env:
@@ -70,6 +74,10 @@ spec:
         - name: init-container-app
           image: busybox:1.34
           command: ['sh', '-c', 'echo Wait for mongoDB to be up and running; sleep 30;']
+          {{- if .Values.app.resources.api }}
+          resources:
+            {{- toYaml .Values.app.resources.api | nindent 12 }}
+          {{- end }}
       containers:
         - name: app
           {{- if .Values.app.images.tag }}
@@ -79,6 +87,10 @@ spec:
           {{- end }}
           {{- if .Values.app.images.imagePullPolicy }}
           imagePullPolicy:  {{ .Values.app.images.imagePullPolicy }}
+          {{- end }}
+          {{- if .Values.app.resources.api }}
+          resources:
+            {{- toYaml .Values.app.resources.api | nindent 12 }}
           {{- end }}
           ports:
             - containerPort: 3000
@@ -153,6 +165,10 @@ spec:
           {{- end }}
           {{- if .Values.app.images.imagePullPolicy }}
           imagePullPolicy:  {{ .Values.app.images.imagePullPolicy }}
+          {{- end }}
+          {{- if .Values.app.resources.suggestions }}
+          resources:
+            {{- toYaml .Values.app.resources.suggestions | nindent 12 }}
           {{- end }}
           ports:
             - containerPort: 3000
@@ -276,6 +292,10 @@ spec:
       containers:
       - name: mongodb
         image: mongo:4.4.1
+        {{- if .Values.app.resources.mongodb }}
+        resources:
+          {{- toYaml .Values.app.resources.mongodb | nindent 12 }}
+        {{- end }}
         ports:
           - containerPort: 27017
         {{ if .Values.app.databaseEmbedded.pvc.enabled }}

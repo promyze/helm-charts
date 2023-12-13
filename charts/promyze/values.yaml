@@ -35,6 +35,35 @@
   # - envVariable: THEMIS_AUTH_CONFIG_ADMIN_PASSWORD
   #   secretName: secret-openldap
   #   secretKey: openldap-password
+  resources:
+    api:
+      limits:
+        cpu: "750m"
+        memory: "2Gi"
+      requests:
+        cpu: "250m"
+        memory: "256Mi"
+    suggestions:
+      limits:
+        cpu: "750m"
+        memory: "2Gi"
+      requests:
+        cpu: "250m"
+        memory: "256Mi"
+    front:
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+      requests:
+        cpu: "250m"
+        memory: "256Mi"
+    mongodb:
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+      requests:
+        cpu: "250m"
+        memory: "256Mi"
 
 services:
   annotations: {}  # annotations to add on Promyze services
