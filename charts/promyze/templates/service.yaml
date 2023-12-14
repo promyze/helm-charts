@@ -89,7 +89,7 @@ kind: Service
 metadata:
   name: mongodb
   labels:
-    component: suggestions
+    component: mongodb
   {{- range $key, $value := .Values.services.labels }}
     {{ $key }}: {{ $value | quote }}
   {{- end }}
