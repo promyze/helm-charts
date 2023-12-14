@@ -271,6 +271,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb
+  labels:
+    component: mongodb
+  {{- range $key, $value := .Values.app.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
 spec:
   selector:
     matchLabels:
