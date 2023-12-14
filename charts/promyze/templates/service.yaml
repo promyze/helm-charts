@@ -5,13 +5,13 @@ metadata:
   name: promyze-api
   labels:
     component: app
-    {{- range $key, $value := .Values.services.labels }}
-      {{ $key }}: {{ $value | quote }}
-    {{- end }}
+  {{- range $key, $value := .Values.services.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
   annotations:
-    {{- range $key, $value := .Values.services.annotations }}
-      {{ $key }}: {{ $value | quote }}
-    {{- end }}
+  {{- range $key, $value := .Values.services.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
 spec:
   selector:
     component: app
@@ -47,9 +47,9 @@ metadata:
   name: promyze-suggestions
   labels:
     component: suggestions
-    {{- range $key, $value := .Values.services.labels }}
-      {{ $key }}: {{ $value | quote }}
-    {{- end }}
+  {{- range $key, $value := .Values.services.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
   annotations:
   {{- range $key, $value := .Values.services.annotations }}
     {{ $key }}: {{ $value | quote }}
@@ -68,10 +68,10 @@ metadata:
   name: promyze-engine
   labels:
     component: engine
-    {{- range $key, $value := .Values.services.labels }}
-      {{ $key }}: {{ $value | quote }}
-    {{- end }}
-    annotations:
+  {{- range $key, $value := .Values.services.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  annotations:
   {{- range $key, $value := .Values.services.annotations }}
     {{ $key }}: {{ $value | quote }}
   {{- end }}
@@ -90,9 +90,9 @@ metadata:
   name: mongodb
   labels:
     component: suggestions
-     {{- range $key, $value := .Values.services.labels }}
-       {{ $key }}: {{ $value | quote }}
-     {{- end }}
+  {{- range $key, $value := .Values.services.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
   annotations:
   {{- range $key, $value := .Values.services.annotations }}
     {{ $key }}: {{ $value | quote }}
