@@ -3,6 +3,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: front
+  labels:
+  {{- range $key, $value := .Values.app.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  annotations:
+  {{- range $key, $value := .Values.app.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
 spec:
   replicas: {{ .Values.app.front.replicas }}
   selector:
@@ -54,6 +62,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app
+  labels:
+  {{- range $key, $value := .Values.app.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  annotations:
+  {{- range $key, $value := .Values.app.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
 spec:
   selector:
     matchLabels:
@@ -135,6 +151,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: suggestions
+  labels:
+  {{- range $key, $value := .Values.app.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  annotations:
+  {{- range $key, $value := .Values.app.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
 spec:
   replicas: {{ .Values.app.suggestions.replicas }}
   selector:
@@ -210,6 +234,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: engine
+  labels:
+  {{- range $key, $value := .Values.app.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  annotations:
+  {{- range $key, $value := .Values.app.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
 spec:
   selector:
     matchLabels:
@@ -274,6 +306,10 @@ metadata:
   labels:
     component: mongodb
   {{- range $key, $value := .Values.app.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  annotations:
+  {{- range $key, $value := .Values.app.annotations }}
     {{ $key }}: {{ $value | quote }}
   {{- end }}
 spec:
