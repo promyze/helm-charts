@@ -42,28 +42,28 @@
         memory: "2Gi"
       requests:
         cpu: "100m"
-        memory: "256Mi"
+        memory: "128Mi"
     suggestions:
       limits:
         cpu: "750m"
         memory: "2Gi"
       requests:
         cpu: "100m"
-        memory: "256Mi"
+        memory: "128Mi"
     front:
       limits:
         cpu: "500m"
         memory: "512Mi"
       requests:
         cpu: "100m"
-        memory: "256Mi"
+        memory: "128Mi"
     mongodb:
       limits:
         cpu: "500m"
         memory: "512Mi"
       requests:
         cpu: "100m"
-        memory: "256Mi"
+        memory: "128Mi"
 
 services:
   annotations: {}  # annotations to add on Promyze services
