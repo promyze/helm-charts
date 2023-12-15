@@ -41,28 +41,28 @@
         cpu: "750m"
         memory: "2Gi"
       requests:
-        cpu: "250m"
+        cpu: "100m"
         memory: "256Mi"
     suggestions:
       limits:
         cpu: "750m"
         memory: "2Gi"
       requests:
-        cpu: "250m"
+        cpu: "100m"
         memory: "256Mi"
     front:
       limits:
         cpu: "500m"
         memory: "512Mi"
       requests:
-        cpu: "250m"
+        cpu: "100m"
         memory: "256Mi"
     mongodb:
       limits:
         cpu: "500m"
         memory: "512Mi"
       requests:
-        cpu: "250m"
+        cpu: "100m"
         memory: "256Mi"
 
 services:
