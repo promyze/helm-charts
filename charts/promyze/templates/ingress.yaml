@@ -73,7 +73,7 @@ spec:
   tls:
     - hosts:
         - {{ $.Values.ingress.hostnames.app | quote }}
-      {{- if hasKey .Values.ingress.tls.secrets "app" }}
+      {{- if and .Values.ingress.tls.secrets .Values.ingress.tls.secrets.app }}
       secretName: {{ $.Values.ingress.tls.secrets.app }}
       {{- end }}
   {{- end }}
