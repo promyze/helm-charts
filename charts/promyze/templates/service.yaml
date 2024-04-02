@@ -61,27 +61,6 @@ spec:
     - name: http
       port: 3000
       targetPort: 3000
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: promyze-engine
-  labels:
-    component: engine
-  {{- range $key, $value := .Values.services.labels }}
-    {{ $key }}: {{ $value | quote }}
-  {{- end }}
-  annotations:
-  {{- range $key, $value := .Values.services.annotations }}
-    {{ $key }}: {{ $value | quote }}
-  {{- end }}
-spec:
-  selector:
-    component: engine
-  ports:
-    - name: http
-      port: 4567
-      targetPort: 4567
 {{ if .Values.app.databaseEmbedded.enabled }}
 ---
 apiVersion: v1

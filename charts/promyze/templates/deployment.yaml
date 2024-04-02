@@ -117,10 +117,8 @@ spec:
            initialDelaySeconds: 30
            periodSeconds: 30
           env:
-            {{- if eq .Values.app.engineLegacy.enabled false}}
             - name: NO_ENGINE
               value: 'true'
-            {{- end }}
             - name: MONGO_URI
               {{- if .Values.app.databaseUri.value }}
               value: {{ .Values.app.databaseUri.value }}
@@ -228,75 +226,6 @@ spec:
       imagePullSecrets:
         - name: {{ .Values.app.images.secret.name }}
       {{- end }}
-{{ if .Values.app.engineLegacy.enabled }}
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: engine
-  labels:
-  {{- range $key, $value := .Values.app.labels }}
-    {{ $key }}: {{ $value | quote }}
-  {{- end }}
-  annotations:
-  {{- range $key, $value := .Values.app.annotations }}
-    {{ $key }}: {{ $value | quote }}
-  {{- end }}
-spec:
-  selector:
-    matchLabels:
-      component: engine
-  template:
-    metadata:
-      labels:
-        component: engine
-      {{- range $key, $value := .Values.app.labels }}
-        {{ $key }}: {{ $value | quote }}
-      {{- end }}
-      annotations:
-      {{- range $key, $value := .Values.app.annotations }}
-        {{ $key }}: {{ $value | quote }}
-      {{- end }}
-    spec:
-      containers:
-        - name: engine
-          {{- if .Values.app.images.tag }}
-          image: {{ .Values.app.images.engine }}:{{ .Values.app.images.tag }}
-          {{ else }}
-          image: {{ .Values.app.images.engine }}
-          {{- end }}
-          {{- if .Values.app.images.imagePullPolicy }}
-          imagePullPolicy:  {{ .Values.app.images.imagePullPolicy }}
-          {{- end }}
-          ports:
-            - containerPort: 4567
-          env:
-            - name: MONGO_URI
-              {{- if .Values.app.databaseUri.value }}
-              value: {{ .Values.app.databaseUri.value }}
-              {{- end }}
-              {{- if .Values.app.databaseUri.secret }}
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.app.databaseUri.secret.name }}
-                  key: {{ .Values.app.databaseUri.secret.key }}
-              {{- end }}
-            {{- range $key, $value := .Values.app.variables }}
-            - name: {{ $key }}
-              value: {{ $value | quote }}
-            {{- end }}
-            {{- range $key, $value := .Values.app.secrets }}
-            - name: {{ $value.envVariable }}
-              valueFrom:
-                secretKeyRef:
-                  name: {{ $value.secretName }}
-                  key: {{ $value.secretKey }}
-            {{- end }}
-      {{- if and .Values.app.images.secret .Values.app.images.secret.name }}
-      imagePullSecrets:
-        - name: {{ .Values.app.images.secret.name }}
-      {{- end }}
-{{ end }}
 {{ if .Values.app.databaseEmbedded.enabled }}
 ---
 apiVersion: apps/v1

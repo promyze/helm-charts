@@ -1,11 +1,11 @@
 apiVersion: v2
 name: promyze
 type: application
-version: 0.5.1
-appVersion: 4.14.0
-description: Raise your own best coding practices with Promyze
+version: 1.0.0
+appVersion: 5.0.0
+description: Elevate developers and code with Packmind
 home: https://github.com/promyze/helm-charts
 maintainers:
   - name: cteyton
-    email: cedric.teyton@promyze.com
-icon: https://promyze.com/wp-content/uploads/promyze-rocket.png
+    email: cedric.teyton@packmind.com
+icon: https://packmind.com/wp-content/uploads/2024/01/LogoMark_Packmind.png

@@ -1,9 +1,13 @@
-# Helm chart for Promyze
+![Packmind](CoverPackmind.png)
+
+# Helm chart for Packmind (ex-Promyze)
 
 [![CI](https://github.com/promyze/helm-charts/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/promyze/helm-charts/actions/workflows/ci.yaml)
 [![Release](https://github.com/promyze/helm-charts/actions/workflows/release.yaml/badge.svg?branch=main)](https://github.com/promyze/helm-charts/actions/workflows/release.yaml)
 
-This Helm chart will install [Promyze](https://www.promyze.com/), the collaborative platform to raise your coding standards, on your Kubernetes cluster.
+This Helm chart will install [Packmind](https://packmind.com/), the collaborative platform to raise your coding standards, on your Kubernetes cluster.
+
+Note: Promyze has been renamed to Packmind in January 2024.
 
 ## Usage
 
@@ -27,12 +31,12 @@ You have 2 options to deal with MongoDB.
 
 Setting the `app.databaseEmbedded.enabled` at `true` will run a MongoDB instance in the cluster.
 
-``` 
+```
 app:
   ...
-  databaseEmbedded: 
+  databaseEmbedded:
     enabled: true # use an internal mongodb in the cluster
-```  
+```
 
 The `app.databaseEmbedded.enabled` at `true` will run a MongoDB instance in the cluster.
 
@@ -44,33 +48,33 @@ Setting the `app.databaseEmbedded.enabled` at `false` will require you to indica
 
 See the `app.databaseUri` section to set the URI.
 
-``` 
+```
 app:
  ...
  databaseUri:
-    value: "mongodb://mongodb:27017/promyze" # You can set the direct URI 
+    value: "mongodb://mongodb:27017/promyze" # You can set the direct URI
     # secret: # Or pass it as a secret
     #   name: mongodb-secret
     #   key: mongodb-uri
-```    
+```
 
-## Access Promyze 
+## Access Packmind
 
-Check the [Contributing](docs/CONTRIBUTING.md) guide to see how to use  **ingress** to connect to Promyze.
+Check the [Contributing](docs/CONTRIBUTING.md) guide to see how to use  **ingress** to connect to Packmind.
 
-## Run the chart 
+## Run the chart
 
 To install the chart:
 
 ```bash
-helm upgrade --install promyze promyze/promyze --create-namespace --namespace promyze
+helm upgrade --install packmind promyze/promyze --create-namespace --namespace packmind
 ```
 
 To uninstall the chart and clean-up the cluster:
 
 ```bash
-helm delete promyze
-kubectl delete ns promyze
+helm delete packmind
+kubectl delete ns packmind
 ```
 
 ## Go further

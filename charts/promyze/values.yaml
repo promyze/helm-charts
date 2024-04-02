@@ -3,8 +3,7 @@
     api: promyze/promyze-api
     proxy: promyze/promyze-proxy
     suggestions: promyze/promyze-suggestions
-    engine: promyze/promyze-engine
-    tag: 4.14.0  # comment this if the images below are custom and contain already a tag
+    tag: 5.0.0  # comment this if the images below are custom and contain already a tag
     imagePullPolicy: Always
     # secret:
       # name: docker-registry-key
@@ -15,8 +14,6 @@
     replicas: 1
   suggestions:
     replicas: 2
-  engineLegacy:
-    enabled: false
   databaseEmbedded:
     enabled: true  # use an internal mongodb in the cluster
     pvc:
