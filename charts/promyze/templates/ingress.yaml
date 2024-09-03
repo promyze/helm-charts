@@ -63,6 +63,13 @@ spec:
                 port:
                   number: 3000
           - pathType: Prefix
+            path: "/techcoach"
+            backend:
+              service:
+                name: promyze-suggestions
+                port:
+                  number: 3000
+          - pathType: Prefix
             path: "/"
             backend:
               service:
