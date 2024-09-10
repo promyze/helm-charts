@@ -3,6 +3,7 @@
     api: promyze/promyze-api
     proxy: promyze/promyze-proxy
     suggestions: promyze/promyze-suggestions
+    aiagent: promyze/packmind-ai-agent
     tag: 5.1.0  # comment this if the images below are custom and contain already a tag
     imagePullPolicy: Always
     # secret:
@@ -13,6 +14,8 @@
   front:
     replicas: 1
   suggestions:
+    replicas: 2
+  aiagent:
     replicas: 2
   databaseEmbedded:
     enabled: true  # use an internal mongodb in the cluster
@@ -41,6 +44,13 @@
         cpu: "100m"
         memory: "128Mi"
     suggestions:
+      limits:
+        cpu: "750m"
+        memory: "2Gi"
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+    aiagent:
       limits:
         cpu: "750m"
         memory: "2Gi"
