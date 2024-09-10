@@ -65,7 +65,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: promyze-ai-agent
+  name: promyze-aiagent
   labels:
     component: aiagent
   {{- range $key, $value := .Values.services.labels }}
