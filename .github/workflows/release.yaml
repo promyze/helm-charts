@@ -40,6 +40,7 @@ jobs:
         run: |
          mkdir -p dev-charts
          helm package ./charts/promyze --destination ./dev-charts/
+         helm repo index dev-charts/ --url https://raw.githubusercontent.com/promyze/helm-charts/dev/dev-charts/
 
       - name: Commit and push charts to dev branch
         if: github.ref == 'refs/heads/dev'
@@ -48,3 +49,5 @@ jobs:
          git add dev-charts/*
          git commit -m "Add/Update Helm charts under development"
          git push origin dev
+
+
