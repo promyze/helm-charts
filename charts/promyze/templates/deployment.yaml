@@ -117,6 +117,8 @@ spec:
            initialDelaySeconds: 30
            periodSeconds: 30
           env:
+            - name: AI_AGENT_REMOTE_URL
+              value: "http://aiagent:3000"
             - name: NO_ENGINE
               value: 'true'
             - name: MONGO_URI
@@ -201,6 +203,8 @@ spec:
            initialDelaySeconds: 30
            periodSeconds: 30
           env:
+            - name: AI_AGENT_REMOTE_URL
+              value: "http://aiagent:3000"
             - name: MONGO_URI
               {{- if .Values.app.databaseUri.value }}
               value: {{ .Values.app.databaseUri.value }}
@@ -261,7 +265,7 @@ spec:
           image: busybox:1.34
           command: ['sh', '-c', 'echo Wait for mongoDB to be up and running; sleep 30;']
       containers:
-        - name: suggestions
+        - name: aiagent
           {{- if .Values.app.images.tag }}
           image: {{ .Values.app.images.aiagent }}:{{ .Values.app.images.tag }}
           {{ else }}
