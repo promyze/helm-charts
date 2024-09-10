@@ -16,4 +16,4 @@ entries:
     urls:
     - https://raw.githubusercontent.com/promyze/helm-charts/dev/dev-charts/promyze-1.2.0-dev.tgz
     version: 1.2.0-dev
-generated: "2024-09-10T13:26:08.571652563Z"
+  generated: "2024-09-10T13:26:08.571652563Z"
