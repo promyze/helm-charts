@@ -3,9 +3,9 @@ entries:
   promyze:
   - apiVersion: v2
     appVersion: 5.1.0
-    created: "2024-09-10T14:36:39.506013062Z"
+    created: "2024-09-10T15:27:09.856214355Z"
     description: Elevate developers and code with Packmind
-    digest: be676f6a99e0a7291ea09b57431dce73044eb9486dc44a1ca53c57e14a3d3597
+    digest: 80c3f15cadb66dc916e4b5566f549c05920be9bebe74c3b546d2ae2d403e4ebf
     home: https://github.com/promyze/helm-charts
     icon: https://packmind.com/wp-content/uploads/2024/01/LogoMark_Packmind.png
     maintainers:
@@ -18,7 +18,7 @@ entries:
     version: 1.2.0
   - apiVersion: v2
     appVersion: 5.1.0
-    created: "2024-09-10T14:36:39.505383536Z"
+    created: "2024-09-10T15:27:09.855765283Z"
     description: Elevate developers and code with Packmind
     digest: 70d4c7286753d1423cef264ea439c95f199b9396be602081a194cf78ce1a6511
     home: https://github.com/promyze/helm-charts
@@ -31,4 +31,4 @@ entries:
     urls:
     - https://raw.githubusercontent.com/promyze/helm-charts/dev/dev-charts/promyze-1.2.0-dev.tgz
     version: 1.2.0-dev
-generated: "2024-09-10T14:36:39.504702734Z"
+generated: "2024-09-10T15:27:09.85417912Z"
