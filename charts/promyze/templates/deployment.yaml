@@ -226,6 +226,90 @@ spec:
       imagePullSecrets:
         - name: {{ .Values.app.images.secret.name }}
       {{- end }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aiagent
+  labels:
+  {{- range $key, $value := .Values.app.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  annotations:
+  {{- range $key, $value := .Values.app.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+spec:
+  replicas: {{ .Values.app.aiagent.replicas }}
+  selector:
+    matchLabels:
+      component: aiagent
+  template:
+    metadata:
+      labels:
+        component: aiagent
+      {{- range $key, $value := .Values.app.labels }}
+        {{ $key }}: {{ $value | quote }}
+      {{- end }}
+      annotations:
+      {{- range $key, $value := .Values.app.annotations }}
+        {{ $key }}: {{ $value | quote }}
+      {{- end }}
+    spec:
+      initContainers:
+        - name: init-container-aiagent
+          image: busybox:1.34
+          command: ['sh', '-c', 'echo Wait for mongoDB to be up and running; sleep 30;']
+      containers:
+        - name: suggestions
+          {{- if .Values.app.images.tag }}
+          image: {{ .Values.app.images.aiagent }}:{{ .Values.app.images.tag }}
+          {{ else }}
+          image: {{ .Values.app.images.aiagent }}
+          {{- end }}
+          {{- if .Values.app.images.imagePullPolicy }}
+          imagePullPolicy:  {{ .Values.app.images.imagePullPolicy }}
+          {{- end }}
+          {{- if .Values.app.resources.aiagent }}
+          resources:
+            {{- toYaml .Values.app.resources.aiagent | nindent 12 }}
+          {{- end }}
+          ports:
+            - containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /open/healthcheck/ping
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          env:
+            - name: SERVER_PORT
+              value: "3000"
+            - name: MONGO_URI
+              {{- if .Values.app.databaseUri.value }}
+              value: {{ .Values.app.databaseUri.value }}
+              {{- end }}
+              {{- if .Values.app.databaseUri.secret }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.databaseUri.secret.name }}
+                  key: {{ .Values.app.databaseUri.secret.key }}
+              {{- end }}
+            {{- range $key, $value := .Values.app.variables }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- range $key, $value := .Values.app.secrets }}
+            - name: {{ $value.envVariable }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $value.secretName }}
+                  key: {{ $value.secretKey }}
+            {{- end }}
+      {{- if and .Values.app.images.secret .Values.app.images.secret.name }}
+      imagePullSecrets:
+        - name: {{ .Values.app.images.secret.name }}
+      {{- end }}
 {{ if .Values.app.databaseEmbedded.enabled }}
 ---
 apiVersion: apps/v1
