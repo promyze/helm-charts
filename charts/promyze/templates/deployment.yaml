@@ -118,7 +118,7 @@ spec:
            periodSeconds: 30
           env:
             - name: AI_AGENT_REMOTE_URL
-              value: "http://aiagent:3000"
+              value: "http://packmind-aiagent:3000"
             - name: NO_ENGINE
               value: 'true'
             - name: MONGO_URI
@@ -204,7 +204,7 @@ spec:
            periodSeconds: 30
           env:
             - name: AI_AGENT_REMOTE_URL
-              value: "http://aiagent:3000"
+              value: "http://packmind-aiagent:3000"
             - name: MONGO_URI
               {{- if .Values.app.databaseUri.value }}
               value: {{ .Values.app.databaseUri.value }}
