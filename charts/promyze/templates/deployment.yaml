@@ -289,6 +289,10 @@ spec:
           env:
             - name: SERVER_PORT
               value: "3000"
+            - name: REDIS_HOST
+              value: "redis"
+            - name: REDIS_PORT
+              value: "6379"
             - name: MONGO_URI
               {{- if .Values.app.databaseUri.value }}
               value: {{ .Values.app.databaseUri.value }}
@@ -314,6 +318,56 @@ spec:
       imagePullSecrets:
         - name: {{ .Values.app.images.secret.name }}
       {{- end }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    component: redis
+  {{- range $key, $value := .Values.app.labels }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  annotations:
+  {{- range $key, $value := .Values.app.annotations }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
+spec:
+  selector:
+    matchLabels:
+      component: redis
+  template:
+    metadata:
+      labels:
+        component: redis
+      {{- range $key, $value := .Values.app.labels }}
+      {{ $key }}: {{ $value | quote }}
+      {{- end }}
+      annotations:
+      {{- range $key, $value := .Values.app.annotations }}
+      {{ $key }}: {{ $value | quote }}
+      {{- end }}
+    spec:
+      containers:
+        - name: redis
+          image: redis:7.4.0
+          {{- if .Values.app.resources.redis }}
+          resources:
+            {{- toYaml .Values.app.resources.redis | nindent 12 }}
+          {{- end }}
+          ports:
+            - containerPort: 6379
+          {{ if .Values.app.redis.pvc.enabled }}
+          volumeMounts:
+            - name: redis-data-dir
+              mountPath: /data/redis
+          {{ end }}
+      {{ if .Values.app.redis.pvc.enabled }}
+      volumes:
+        - name: redis-data-dir
+          persistentVolumeClaim:
+            claimName: redis-pvc
+      {{ end }}
 {{ if .Values.app.databaseEmbedded.enabled }}
 ---
 apiVersion: apps/v1
