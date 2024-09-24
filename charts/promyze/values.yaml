@@ -35,6 +35,9 @@
   # - envVariable: THEMIS_AUTH_CONFIG_ADMIN_PASSWORD
   #   secretName: secret-openldap
   #   secretKey: openldap-password
+  redis:
+    pvc:
+      enabled: false
   resources:
     api:
       limits:
