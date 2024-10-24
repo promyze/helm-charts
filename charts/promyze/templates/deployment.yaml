@@ -299,11 +299,11 @@ spec:
                   name: {{ .Values.app.databaseUri.secret.name }}
                   key: {{ .Values.app.databaseUri.secret.key }}
               {{- end }}
-            {{- range $key, $value := .Values.app.variables }}
+            {{- range $key, $value := .Values.aiagent.variables }}
             - name: {{ $key }}
               value: {{ $value | quote }}
             {{- end }}
-            {{- range $key, $value := .Values.app.secrets }}
+            {{- range $key, $value := .Values.aiagent.secrets }}
             - name: {{ $value.envVariable }}
               valueFrom:
                 secretKeyRef:

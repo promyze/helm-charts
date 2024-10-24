@@ -17,6 +17,11 @@
     replicas: 2
   aiagent:
     replicas: 2
+    variables:
+      #LOG_LEVEL: debug
+      #MAX_DEBUG_RETRY: 10
+      #MAX_JOBS_TIMEOUT: 600000
+      #AI_REQUEST_TIMEOUT: 60000
   databaseEmbedded:
     enabled: true  # use an internal mongodb in the cluster
     pvc:
