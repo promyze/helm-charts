@@ -299,7 +299,7 @@ spec:
                   name: {{ .Values.app.databaseUri.secret.name }}
                   key: {{ .Values.app.databaseUri.secret.key }}
               {{- end }}
-            {{- range $key, $value := .Values.aiagent.variables }}
+            {{- range $key, $value := .Values.app.aiagent.variables }}
             - name: {{ $key }}
               value: {{ $value | quote }}
             {{- end }}
