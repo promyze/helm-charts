@@ -303,7 +303,7 @@ spec:
             - name: {{ $key }}
               value: {{ $value | quote }}
             {{- end }}
-            {{- range $key, $value := .Values.aiagent.secrets }}
+            {{- range $key, $value := .Values.app.secrets }}
             - name: {{ $value.envVariable }}
               valueFrom:
                 secretKeyRef:
