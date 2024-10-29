@@ -160,7 +160,9 @@ metadata:
     {{ $key }}: {{ $value | quote }}
   {{- end }}
 spec:
+  {{- if .Values.app.suggestions.replicas }}
   replicas: {{ .Values.app.suggestions.replicas }}
+  {{- if .Values.app.suggestions.replicas }}
   selector:
     matchLabels:
       component: suggestions
