@@ -155,14 +155,16 @@ metadata:
   {{- range $key, $value := .Values.app.labels }}
     {{ $key }}: {{ $value | quote }}
   {{- end }}
+  {{- if .Values.app.annotations }}
   annotations:
   {{- range $key, $value := .Values.app.annotations }}
     {{ $key }}: {{ $value | quote }}
   {{- end }}
+  {{- end }}
 spec:
   {{- if .Values.app.suggestions.replicas }}
   replicas: {{ .Values.app.suggestions.replicas }}
-  {{- if .Values.app.suggestions.replicas }}
+  {{- end }}
   selector:
     matchLabels:
       component: suggestions
