@@ -1,0 +1,36 @@
+Results of devskim linter (version 1.0.33)
+See documentation on https://megalinter.io/8.0.0/descriptors/repository_devskim/
+-----------------------------------------------
+
+❌ [ERROR] for workspace /tmp/lint
+Linter raw log:
+Unhandled exception. System.TypeInitializationException: The type initializer for 'System.Threading.Tasks.ParallelEtwProvider' threw an exception.
+ ---> System.Reflection.CustomAttributeFormatException: 'Name' property specified was not found.
+ ---> System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at CommandLine.VerbAttribute.set_HelpText(String value)
+   at InvokeStub_EventSourceAttribute.set_Name(Object, Object, IntPtr*)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   --- End of inner exception stack trace ---
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttribute(MemberInfo element, Type attributeType, Boolean inherit)
+   at System.Diagnostics.Tracing.EventSource.GetCustomAttributeHelper(MemberInfo member, Type attributeType, EventManifestOptions flags)
+   at System.Diagnostics.Tracing.EventSource.GetName(Type eventSourceType, EventManifestOptions flags)
+   at System.Diagnostics.Tracing.EventSource..ctor(EventSourceSettings settings, String[] traits)
+   at System.Threading.Tasks.ParallelEtwProvider..cctor()
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Parallel.ForWorker[TLocal,TInt](TInt fromInclusive, TInt toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   at System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   at System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   at Microsoft.DevSkim.CLI.Commands.AnalyzeCommand.RunFileEntries(IEnumerable`1 fileListing, Languages devSkimLanguages) in D:\a\_work\1\s\DevSkim-DotNet\Microsoft.DevSkim.CLI\Commands\AnalyzeCommand.cs:line 479
+   at Microsoft.DevSkim.CLI.Commands.AnalyzeCommand.Run() in D:\a\_work\1\s\DevSkim-DotNet\Microsoft.DevSkim.CLI\Commands\AnalyzeCommand.cs:line 131
+   at Microsoft.DevSkim.CLI.Program.<>c.<Main>b__0_0(AnalyzeCommandOptions opts) in D:\a\_work\1\s\DevSkim-DotNet\Microsoft.DevSkim.CLI\Program.cs:line 16
+   at CommandLine.ParserResultExtensions.MapResult[T1,T2,T3,T4,TResult](ParserResult`1 result, Func`2 parsedFunc1, Func`2 parsedFunc2, Func`2 parsedFunc3, Func`2 parsedFunc4, Func`2 notParsedFunc)
+   at Microsoft.DevSkim.CLI.Program.Main(String[] args) in D:\a\_work\1\s\DevSkim-DotNet\Microsoft.DevSkim.CLI\Program.cs:line 14
+

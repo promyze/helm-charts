@@ -1,0 +1,882 @@
+----------------------------------------------------------------------------------------------------
+------------------------------------ MegaLinter, by OX Security ------------------------------------
+----------------------------------------------------------------------------------------------------
+ - Image Creation Date: 2024-08-19T21:44:53Z
+ - Image Revision: 378cc7a36ad17c7f458333ebf6803a5069fff007
+ - Image Version: v8.0.0
+----------------------------------------------------------------------------------------------------
+The MegaLinter documentation can be found at:
+ - https://megalinter.io/8.0.0
+----------------------------------------------------------------------------------------------------
+MegaLinter initialization
+MegaLinter will analyze workspace [/tmp/lint]
+
+[Activation] ACTION_ACTIONLINT has been set inactive, as subdirectory has not been found: .github/workflows (set value "any" to always activate)
+[Activation] ANSIBLE_ANSIBLE_LINT has been set inactive, as none of these files has been found: ['.ansible-lint']
+[Activation] EDITORCONFIG_EDITORCONFIG_CHECKER has been set inactive, as none of these files has been found: ['.editorconfig']
+[Activation] JAVASCRIPT_ES has been set inactive, as none of these files has been found: ['.eslintrc.json', '.eslintrc.yml', '.eslintrc.yaml', '.eslintrc.js', '.eslintrc.cjs', 'package.json:eslintConfig']
+[Activation] JSON_NPM_PACKAGE_JSON_LINT has been set inactive, as none of these files has been found: ['package.json']
+[Activation] JSX_ESLINT has been set inactive, as none of these files has been found: ['.eslintrc.json', '.eslintrc.yml', '.eslintrc.yaml', '.eslintrc.js', '.eslintrc.cjs', 'package.json:eslintConfig']
+[Activation] KUBERNETES_KUBECONFORM has been set inactive, as subdirectory has not been found: kubernetes (set value "any" to always activate)
+[Activation] REPOSITORY_LS_LINT has been set inactive, as none of these files has been found: ['.ls-lint.yml']
+[SemgrepLinter] Deactivated because no ruleset has been defined
+[Activation] SALESFORCE_SFDX_SCANNER_APEX has been set inactive, as subdirectory has not been found: force-app (set value "any" to always activate)
+[Activation] SALESFORCE_SFDX_SCANNER_AURA has been set inactive, as subdirectory has not been found: force-app (set value "any" to always activate)
+[Activation] SALESFORCE_SFDX_SCANNER_LWC has been set inactive, as subdirectory has not been found: force-app (set value "any" to always activate)
+[Activation] SALESFORCE_LIGHTNING_FLOW_SCANNER has been set inactive, as subdirectory has not been found: force-app (set value "any" to always activate)
+[Activation] SPELL_PROSELINT has been set inactive, as none of these files has been found: ['.proselintrc', 'proselint/config.json']
+[Activation] SPELL_VALE has been set inactive, as none of these files has been found: ['.vale.ini']
+[Activation] SQL_SQLFLUFF has been set inactive, as none of these files has been found: ['.sqlfluff']
+[Activation] SWIFT_SWIFTLINT has been set inactive, as none of these files has been found: ['.swiftlint.yml']
+[Activation] TSX_ESLINT has been set inactive, as none of these files has been found: ['.eslintrc.json', '.eslintrc.yml', '.eslintrc.yaml', '.eslintrc.js', '.eslintrc.cjs', 'package.json:eslintConfig']
+[Activation] TYPESCRIPT_ES has been set inactive, as none of these files has been found: ['.eslintrc.json', '.eslintrc.yml', '.eslintrc.yaml', '.eslintrc.js', '.eslintrc.cjs', 'package.json:eslintConfig']
+CLOJURE_CLJSTYLE has been disabled in MegaLinter for the following reason: Bug on cljstyle on alpine linux: https://github.com/greglook/cljstyle/issues/104
+JSON_ESLINT_PLUGIN_JSONC has been disabled in MegaLinter for the following reason: Bug in eslint-plugin-jsonc : https://github.com/ota-meshi/eslint-plugin-jsonc/issues/328
+MAKEFILE_CHECKMAKE has been disabled in MegaLinter for the following reason: Security issues: https://github.com/mrtazz/checkmake/issues/99
+MARKDOWN_REMARK_LINT has been disabled in MegaLinter for the following reason: Bug in remark-lint: https://github.com/remarkjs/remark-lint/issues/322
+SQL_TSQLLINT has been disabled in MegaLinter for the following reason: Security issues not handled: # https://github.com/tsqllint/tsqllint/issues/333
+Skipped linters: ACTION_ACTIONLINT, ANSIBLE_ANSIBLE_LINT, CLOJURE_CLJSTYLE, EDITORCONFIG_EDITORCONFIG_CHECKER, JAVASCRIPT_ES, JAVASCRIPT_PRETTIER, JSON_ESLINT_PLUGIN_JSONC, JSON_NPM_PACKAGE_JSON_LINT, JSX_ESLINT, KUBERNETES_KUBECONFORM, MAKEFILE_CHECKMAKE, MARKDOWN_REMARK_LINT, REPOSITORY_LS_LINT, REPOSITORY_SEMGREP, SALESFORCE_LIGHTNING_FLOW_SCANNER, SALESFORCE_SFDX_SCANNER_APEX, SALESFORCE_SFDX_SCANNER_AURA, SALESFORCE_SFDX_SCANNER_LWC, SPELL_PROSELINT, SPELL_VALE, SQL_SQLFLUFF, SQL_TSQLLINT, SWIFT_SWIFTLINT, TSX_ESLINT, TYPESCRIPT_ES, TYPESCRIPT_PRETTIER
+To receive reports as email, please set variable EMAIL_REPORTER_EMAIL
+
+MegaLinter now collects the files to analyse
+Listing all files in directory [/tmp/lint], then filter with:
+- File extensions: , .R, .RMD, .Rmd, .bash, .bicep, .c, .c++, .cc, .cdxml, .clj, .cljc, .cljs, .coffee, .cpp, .cs, .csproj, .css, .cu, .cuh, .cxx, .dart, .dash, .edn, .env, .feature, .go, .gradle, .graphql, .groovy, .gvy, .h, .h++, .hcl, .hh, .hpp, .htm, .html, .hxx, .java, .js, .json, .json5, .jsonc, .ksh, .kt, .kts, .lua, .markdown, .md, .mdx, .nf, .p6, .php, .pl, .pl6, .pm, .pm6, .pp, .proto, .ps1, .ps1xml, .psd1, .psm1, .psrc, .pssc, .py, .r, .raku, .rakumod, .rakutest, .rb, .rs, .rst, .saas, .scala, .scss, .sh, .smk, .t, .tex, .tf, .ts, .txt, .vb, .xml, .xsd, .yaml, .yml
+- File names (regex): Containerfile, Dockerfile, Jenkinsfile, Snakefile
+Unable to list git ignored files (/tmp/lint)
+Kept [7] files on [8] found files
+
++----MATCHING LINTERS-----+------------------------------------------------------------------------+----------------+------------+
+| Descriptor | Linter     | Criteria                                                               | Matching files | Format/Fix |
++------------+------------+------------------------------------------------------------------------+----------------+------------+
+| COPYPASTE  | jscpd      |                                                                        | project        | no         |
+| KUBERNETES | helm       | .yml|.yaml|.json                                                       | project        | no         |
+| KUBERNETES | kubescape  | .yml|.yaml|.json                                                       | project        | no         |
+| REPOSITORY | checkov    |                                                                        | project        | no         |
+| REPOSITORY | devskim    |                                                                        | project        | no         |
+| REPOSITORY | dustilock  |                                                                        | project        | no         |
+| REPOSITORY | git_diff   |                                                                        | project        | no         |
+| REPOSITORY | gitleaks   |                                                                        | project        | no         |
+| REPOSITORY | grype      |                                                                        | project        | no         |
+| REPOSITORY | kics       |                                                                        | project        | no         |
+| REPOSITORY | secretlint |                                                                        | project        | no         |
+| REPOSITORY | syft       |                                                                        | project        | no         |
+| REPOSITORY | trivy      |                                                                        | project        | no         |
+| REPOSITORY | trivy-sbom |                                                                        | project        | no         |
+| REPOSITORY | trufflehog |                                                                        | project        | no         |
+| SPELL      | cspell     |                                                                        | 7              | no         |
+| SPELL      | lychee     | .md|.mdx|.markdown|.html|.htm|.rst|.txt|.json|.jsonc|.json5|.yaml|.yml | 7              | no         |
+| YAML       | prettier   | .yml|.yaml                                                             | 7              | no         |
+| YAML       | yamllint   | .yml|.yaml                                                             | 7              | no         |
+| YAML       | v8r        | .yml|.yaml                                                             | 7              | no         |
++------------+------------+------------------------------------------------------------------------+----------------+------------+
+
+Processing linters on [11] parallel cores… (can be decreased with variable PARALLEL_PROCESS_NUMBER in case of performance issues)
+Unable to parse sarif (Expecting value: line 1 column 1 (char 0)):Unhandled exception. System.TypeInitializationException: The type initializer for 'System.Threading.Tasks.ParallelEtwProvider' threw an exception.
+ ---> System.Reflection.CustomAttributeFormatException: 'Name' property specified was not found.
+ ---> System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at CommandLine.VerbAttribute.set_HelpText(String value)
+   at InvokeStub_EventSourceAttribute.set_Name(Object, Object, IntPtr*)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   --- End of inner exception stack trace ---
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttribute(MemberInfo element, Type attributeType, Boolean inherit)
+   at System.Diagnostics.Tracing.EventSource.GetCustomAttributeHelper(MemberInfo member, Type attributeType, EventManifestOptions flags)
+   at System.Diagnostics.Tracing.EventSource.GetName(Type eventSourceType, EventManifestOptions flags)
+   at System.Diagnostics.Tracing.EventSource..ctor(EventSourceSettings settings, String[] traits)
+   at System.Threading.Tasks.ParallelEtwProvider..cctor()
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Parallel.ForWorker[TLocal,TInt](TInt fromInclusive, TInt toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   at System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   at System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   at Microsoft.DevSkim.CLI.Commands.AnalyzeCommand.RunFileEntries(IEnumerable`1 fileListing, Languages devSkimLanguages) in D:\a\_work\1\s\DevSkim-DotNet\Microsoft.DevSkim.CLI\Commands\AnalyzeCommand.cs:line 479
+   at Microsoft.DevSkim.CLI.Commands.AnalyzeCommand.Run() in D:\a\_work\1\s\DevSkim-DotNet\Microsoft.DevSkim.CLI\Commands\AnalyzeCommand.cs:line 131
+   at Microsoft.DevSkim.CLI.Program.<>c.<Main>b__0_0(AnalyzeCommandOptions opts) in D:\a\_work\1\s\DevSkim-DotNet\Microsoft.DevSkim.CLI\Program.cs:line 16
+   at CommandLine.ParserResultExtensions.MapResult[T1,T2,T3,T4,TResult](ParserResult`1 result, Func`2 parsedFunc1, Func`2 parsedFunc2, Func`2 parsedFunc3, Func`2 parsedFunc4, Func`2 notParsedFunc)
+   at Microsoft.DevSkim.CLI.Program.Main(String[] args) in D:\a\_work\1\s\DevSkim-DotNet\Microsoft.DevSkim.CLI\Program.cs:line 14
+
+Unable to find results in :Unhandled exception. System.TypeInitializationException: The type initializer for 'System.Threading.Tasks.ParallelEtwProvider' threw an exception.
+ ---> System.Reflection.CustomAttributeFormatException: 'Name' property specified was not found.
+ ---> System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at CommandLine.VerbAttribute.set_HelpText(String value)
+   at InvokeStub_EventSourceAttribute.set_Name(Object, Object, IntPtr*)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   --- End of inner exception stack trace ---
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttribute(MemberInfo element, Type attributeType, Boolean inherit)
+   at System.Diagnostics.Tracing.EventSource.GetCustomAttributeHelper(MemberInfo member, Type attributeType, EventManifestOptions flags)
+   at System.Diagnostics.Tracing.EventSource.GetName(Type eventSourceType, EventManifestOptions flags)
+   at System.Diagnostics.Tracing.EventSource..ctor(EventSourceSettings settings, String[] traits)
+   at System.Threading.Tasks.ParallelEtwProvider..cctor()
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Parallel.ForWorker[TLocal,TInt](TInt fromInclusive, TInt toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   at System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   at System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   at Microsoft.DevSkim.CLI.Commands.AnalyzeCommand.RunFileEntries(IEnumerable`1 fileListing, Languages devSkimLanguages) in D:\a\_work\1\s\DevSkim-DotNet\Microsoft.DevSkim.CLI\Commands\AnalyzeCommand.cs:line 479
+   at Microsoft.DevSkim.CLI.Commands.AnalyzeCommand.Run() in D:\a\_work\1\s\DevSkim-DotNet\Microsoft.DevSkim.CLI\Commands\AnalyzeCommand.cs:line 131
+   at Microsoft.DevSkim.CLI.Program.<>c.<Main>b__0_0(AnalyzeCommandOptions opts) in D:\a\_work\1\s\DevSkim-DotNet\Microsoft.DevSkim.CLI\Program.cs:line 16
+   at CommandLine.ParserResultExtensions.MapResult[T1,T2,T3,T4,TResult](ParserResult`1 result, Func`2 parsedFunc1, Func`2 parsedFunc2, Func`2 parsedFunc3, Func`2 parsedFunc4, Func`2 notParsedFunc)
+   at Microsoft.DevSkim.CLI.Program.Main(String[] args) in D:\a\_work\1\s\DevSkim-DotNet\Microsoft.DevSkim.CLI\Program.cs:line 14
+
+Unable to get number of errors with sarif and None
+[31m❌ Linted [REPOSITORY] files with [devskim]: Found 1 error(s) - (4.21s)[0m
+- Using [devskim v1.0.33] https://megalinter.io/8.0.0/descriptors/repository_devskim
+- MegaLinter key: [REPOSITORY_DEVSKIM]
+- Rules config: [.devskim.json]
+--Error detail:
+Unhandled exception. System.TypeInitializationException: The type initializer for 'System.Threading.Tasks.ParallelEtwProvider' threw an exception.
+ ---> System.Reflection.CustomAttributeFormatException: 'Name' property specified was not found.
+ ---> System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at CommandLine.VerbAttribute.set_HelpText(String value)
+   at InvokeStub_EventSourceAttribute.set_Name(Object, Object, IntPtr*)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   --- End of inner exception stack trace ---
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttribute(MemberInfo element, Type attributeType, Boolean inherit)
+   at System.Diagnostics.Tracing.EventSource.GetCustomAttributeHelper(MemberInfo member, Type attributeType, EventManifestOptions flags)
+   at System.Diagnostics.Tracing.EventSource.GetName(Type eventSourceType, EventManifestOptions flags)
+   at System.Diagnostics.Tracing.EventSource..ctor(EventSourceSettings settings, String[] traits)
+   at System.Threading.Tasks.ParallelEtwProvider..cctor()
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Parallel.ForWorker[TLocal,TInt](TInt fromInclusive, TInt toExclusive, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Func`4 bodyWithLocal, Func`1 localInit, Action`1 localFinally)
+   at System.Threading.Tasks.Parallel.ForEachWorker[TSource,TLocal](IEnumerable`1 source, ParallelOptions parallelOptions, Action`1 body, Action`2 bodyWithState, Action`3 bodyWithStateAndIndex, Func`4 bodyWithStateAndLocal, Func`5 bodyWithEverything, Func`1 localInit, Action`1 localFinally)
+   at System.Threading.Tasks.Parallel.ForEach[TSource](IEnumerable`1 source, Action`1 body)
+   at Microsoft.DevSkim.CLI.Commands.AnalyzeCommand.RunFileEntries(IEnumerable`1 fileListing, Languages devSkimLanguages) in D:\a\_work\1\s\DevSkim-DotNet\Microsoft.DevSkim.CLI\Commands\AnalyzeCommand.cs:line 479
+   at Microsoft.DevSkim.CLI.Commands.AnalyzeCommand.Run() in D:\a\_work\1\s\DevSkim-DotNet\Microsoft.DevSkim.CLI\Commands\AnalyzeCommand.cs:line 131
+   at Microsoft.DevSkim.CLI.Program.<>c.<Main>b__0_0(AnalyzeCommandOptions opts) in D:\a\_work\1\s\DevSkim-DotNet\Microsoft.DevSkim.CLI\Program.cs:line 16
+   at CommandLine.ParserResultExtensions.MapResult[T1,T2,T3,T4,TResult](ParserResult`1 result, Func`2 parsedFunc1, Func`2 parsedFunc2, Func`2 parsedFunc3, Func`2 parsedFunc4, Func`2 notParsedFunc)
+   at Microsoft.DevSkim.CLI.Program.Main(String[] args) in D:\a\_work\1\s\DevSkim-DotNet\Microsoft.DevSkim.CLI\Program.cs:line 14
+
+
+[32m✅ Linted [REPOSITORY] files with [trivy-sbom] successfully - (3.02s)[0m
+- Using [trivy-sbom v0.54.1] https://megalinter.io/8.0.0/descriptors/repository_trivy_sbom
+- MegaLinter key: [REPOSITORY_TRIVY_SBOM]
+- Rules config: identified by [trivy-sbom]
+
+[32m✅ Linted [REPOSITORY] files with [secretlint] successfully - (3.46s)[0m
+- Using [secretlint v8.2.4] https://megalinter.io/8.0.0/descriptors/repository_secretlint
+- MegaLinter key: [REPOSITORY_SECRETLINT]
+- Rules config: [.secretlintrc.json]
+
+[31m❌ Linted [SPELL] files with [lychee]: Found 1 error(s) - (1.22s)[0m
+- Using [lychee v0.15.1] https://megalinter.io/8.0.0/descriptors/spell_lychee
+- MegaLinter key: [SPELL_LYCHEE]
+- Rules config: identified by [lychee]
+- Number of files analyzed: [7]
+--Error detail:
+? [IGNORED] mongodb://mongodb:27017/promyze | Unsupported: Error creating request client: builder error for url (mongodb://mongodb:27017/promyze)
+✗ [ERR] http://packmind-aiagent:3000/ | Failed: Network error: error sending request for url (http://packmind-aiagent:3000/)
+📝 Summary
+---------------------
+🔍 Total............8
+✅ Successful.......5
+⏳ Timeouts.........0
+🔀 Redirected.......0
+👻 Excluded.........1
+❓ Unknown..........0
+🚫 Errors...........1
+
+Errors in templates/deployment.yaml
+✗ [ERR] http://packmind-aiagent:3000/ | Failed: Network error: error sending request for url (http://packmind-aiagent:3000/)
+
+
+[32m✅ Linted [REPOSITORY] files with [dustilock] successfully - (0.21s)[0m
+- Using [dustilock v1.2.0] https://megalinter.io/8.0.0/descriptors/repository_dustilock
+- MegaLinter key: [REPOSITORY_DUSTILOCK]
+- Rules config: identified by [dustilock]
+
+[32m✅ Linted [COPYPASTE] files with [jscpd] successfully - (4.91s)[0m
+- Using [jscpd v4.0.5] https://megalinter.io/8.0.0/descriptors/copypaste_jscpd
+- MegaLinter key: [COPYPASTE_JSCPD]
+- Rules config: [.jscpd.json]
+
+[31m❌ Linted [KUBERNETES] files with [helm]: Found 1 error(s) - (1.21s)[0m
+- Using [helm v3.14.3] https://megalinter.io/8.0.0/descriptors/kubernetes_helm
+- MegaLinter key: [KUBERNETES_HELM]
+- Rules config: identified by [helm]
+--Error detail:
+==> Linting .
+[ERROR] templates/: parse error at (promyze/templates/service.yaml:127): unexpected {{end}}
+
+Error: 1 chart(s) linted, 1 chart(s) failed
+
+
+[32m✅ Linted [REPOSITORY] files with [gitleaks] successfully - (0.75s)[0m
+- Using [gitleaks v8.18.4] https://megalinter.io/8.0.0/descriptors/repository_gitleaks
+- MegaLinter key: [REPOSITORY_GITLEAKS]
+- Rules config: [.gitleaks.toml]
+
+[31m❌ Linted [YAML] files with [yamllint]: Found 14 error(s) - (1.07s)[0m
+- Using [yamllint v1.35.1] https://megalinter.io/8.0.0/descriptors/yaml_yamllint
+- MegaLinter key: [YAML_YAMLLINT]
+- Rules config: [.yamllint.yml]
+- Number of files analyzed: [7]
+--Error detail:
+Chart.yaml
+  1:1       warning  missing document start "---"  (document-start)
+
+templates/deployment.yaml
+  8:5       error    syntax error: could not find expected ':' (syntax)
+
+templates/ingress.yaml
+  1:1       warning  missing document start "---"  (document-start)
+  9:5       error    syntax error: could not find expected ':' (syntax)
+
+templates/pvc.yml
+  1:1       warning  missing document start "---"  (document-start)
+  2:1       error    syntax error: expected '<document start>', but found '<block mapping start>' (syntax)
+  15:10     error    no new line character at the end of file  (new-line-at-end-of-file)
+
+templates/secret.yaml
+  1:1       warning  missing document start "---"  (document-start)
+  2:1       error    syntax error: expected '<document start>', but found '<block mapping start>' (syntax)
+  10:4      error    no new line character at the end of file  (new-line-at-end-of-file)
+
+templates/service.yaml
+  9:5       error    syntax error: could not find expected ':' (syntax)
+
+values.yaml
+  1:1       warning  missing document start "---"  (document-start)
+  10:7      warning  comment not indented like content  (comments-indentation)
+  33:5      warning  comment not indented like content  (comments-indentation)
+
+
+
+[32m✅ Linted [REPOSITORY] files with [syft] successfully - (1.9s)[0m
+- Using [syft v1.11.0] https://megalinter.io/8.0.0/descriptors/repository_syft
+- MegaLinter key: [REPOSITORY_SYFT]
+- Rules config: identified by [syft]
+
+[31m❌ Linted [REPOSITORY] files with [git_diff]: Found 1 error(s) - (0.03s)[0m
+- Using [git_diff v2.45.2] https://megalinter.io/8.0.0/descriptors/repository_git_diff
+- MegaLinter key: [REPOSITORY_GIT_DIFF]
+- Rules config: identified by [git_diff]
+--Error detail:
+warning: Not a git repository. Use --no-index to compare two paths outside a working tree
+usage: git diff --no-index [<options>] <path> <path>
+
+Diff output format options
+    -p, --patch           generate patch
+    -s, --no-patch        suppress diff output
+    -u                    generate patch
+    -U, --unified[=<n>]   generate diffs with <n> lines context
+    -W, --[no-]function-context
+                          generate diffs with <n> lines context
+    --raw                 generate the diff in raw format
+    --patch-with-raw      synonym for '-p --raw'
+    --patch-with-stat     synonym for '-p --stat'
+    --numstat             machine friendly --stat
+    --shortstat           output only the last line of --stat
+    -X, --dirstat[=<param1>,<param2>...]
+                          output the distribution of relative amount of changes for each sub-directory
+    --cumulative          synonym for --dirstat=cumulative
+    --dirstat-by-file[=<param1>,<param2>...]
+                          synonym for --dirstat=files,<param1>,<param2>...
+    --check               warn if changes introduce conflict markers or whitespace errors
+    --summary             condensed summary such as creations, renames and mode changes
+    --name-only           show only names of changed files
+    --name-status         show only names and status of changed files
+    --stat[=<width>[,<name-width>[,<count>]]]
+                          generate diffstat
+    --stat-width <width>  generate diffstat with a given width
+    --stat-name-width <width>
+                          generate diffstat with a given name width
+    --stat-graph-width <width>
+                          generate diffstat with a given graph width
+    --stat-count <count>  generate diffstat with limited lines
+    --[no-]compact-summary
+                          generate compact summary in diffstat
+    --binary              output a binary diff that can be applied
+    --[no-]full-index     show full pre- and post-image object names on the "index" lines
+    --[no-]color[=<when>] show colored diff
+    --ws-error-highlight <kind>
+                          highlight whitespace errors in the 'context', 'old' or 'new' lines in the diff
+    -z                    do not munge pathnames and use NULs as output field terminators in --raw or --numstat
+    --[no-]abbrev[=<n>]   use <n> digits to display object names
+    --src-prefix <prefix> show the given source prefix instead of "a/"
+    --dst-prefix <prefix> show the given destination prefix instead of "b/"
+    --line-prefix <prefix>
+                          prepend an additional prefix to every line of output
+    --no-prefix           do not show any source or destination prefix
+    --default-prefix      use default prefixes a/ and b/
+    --inter-hunk-context <n>
+                          show context between diff hunks up to the specified number of lines
+    --output-indicator-new <char>
+                          specify the character to indicate a new line instead of '+'
+    --output-indicator-old <char>
+                          specify the character to indicate an old line instead of '-'
+    --output-indicator-context <char>
+                          specify the character to indicate a context instead of ' '
+
+Diff rename options
+    -B, --break-rewrites[=<n>[/<m>]]
+                          break complete rewrite changes into pairs of delete and create
+    -M, --find-renames[=<n>]
+                          detect renames
+    -D, --irreversible-delete
+                          omit the preimage for deletes
+    -C, --find-copies[=<n>]
+                          detect copies
+    --[no-]find-copies-harder
+                          use unmodified files as source to find copies
+    --no-renames          disable rename detection
+    --[no-]rename-empty   use empty blobs as rename source
+    --[no-]follow         continue listing the history of a file beyond renames
+    -l <n>                prevent rename/copy detection if the number of rename/copy targets exceeds given limit
+
+Diff algorithm options
+    --minimal             produce the smallest possible diff
+    -w, --ignore-all-space
+                          ignore whitespace when comparing lines
+    -b, --ignore-space-change
+                          ignore changes in amount of whitespace
+    --ignore-space-at-eol ignore changes in whitespace at EOL
+    --ignore-cr-at-eol    ignore carrier-return at the end of line
+    --ignore-blank-lines  ignore changes whose lines are all blank
+    -I, --[no-]ignore-matching-lines <regex>
+                          ignore changes whose all lines match <regex>
+    --[no-]indent-heuristic
+                          heuristic to shift diff hunk boundaries for easy reading
+    --patience            generate diff using the "patience diff" algorithm
+    --histogram           generate diff using the "histogram diff" algorithm
+    --diff-algorithm <algorithm>
+                          choose a diff algorithm
+    --anchored <text>     generate diff using the "anchored diff" algorithm
+    --word-diff[=<mode>]  show word diff, using <mode> to delimit changed words
+    --word-diff-regex <regex>
+                          use <regex> to decide what a word is
+    --color-words[=<regex>]
+                          equivalent to --word-diff=color --word-diff-regex=<regex>
+    --[no-]color-moved[=<mode>]
+                          moved lines of code are colored differently
+    --[no-]color-moved-ws <mode>
+                          how white spaces are ignored in --color-moved
+
+Other diff options
+    --[no-]relative[=<prefix>]
+                          when run from subdir, exclude changes outside and show relative paths
+    -a, --[no-]text       treat all files as text
+    -R                    swap two inputs, reverse the diff
+    --[no-]exit-code      exit with 1 if there were differences, 0 otherwise
+    --[no-]quiet          disable all output of the program
+    --[no-]ext-diff       allow an external diff helper to be executed
+    --[no-]textconv       run external text conversion filters when comparing binary files
+    --ignore-submodules[=<when>]
+                          ignore changes to submodules in the diff generation
+    --submodule[=<format>]
+                          specify how differences in submodules are shown
+    --ita-invisible-in-index
+                          hide 'git add -N' entries from the index
+    --ita-visible-in-index
+                          treat 'git add -N' entries as real in the index
+    -S <string>           look for differences that change the number of occurrences of the specified string
+    -G <regex>            look for differences that change the number of occurrences of the specified regex
+    --pickaxe-all         show all changes in the changeset with -S or -G
+    --pickaxe-regex       treat <string> in -S as extended POSIX regular expression
+    -O <file>             control the order in which files appear in the output
+    --rotate-to <path>    show the change in the specified path first
+    --skip-to <path>      skip the output to the specified path
+    --find-object <object-id>
+                          look for differences that change the number of occurrences of the specified object
+    --diff-filter [(A|C|D|M|R|T|U|X|B)...[*]]
+                          select files by diff type
+    --output <file>       output to a specific file
+
+
+
+[33m✅ Linted [YAML] files with [prettier]: Found 1 non blocking error(s) - (2.34s)[0m
+- Using [prettier v3.3.3] https://megalinter.io/8.0.0/descriptors/yaml_prettier
+- MegaLinter key: [YAML_PRETTIER]
+- Rules config: identified by [prettier]
+- Number of files analyzed: [7]
+--Error detail:
+Checking formatting...
+[error] templates/deployment.yaml: SyntaxError: All collection items must start at the same column (5:3)
+[error]    3 | kind: Deployment
+[error]    4 | metadata:
+[error] >  5 |   name: front
+[error]      |   ^^^^^^^^^^^
+[error] >  6 |   labels:
+[error]      | ^^^^^^^^^
+[error] >  7 |   {{- range $key, $value := .Values.app.labels }}
+[error]      | ^^^^^^^^^
+[error] >  8 |     {{ $key }}: {{ $value | quote }}
+[error]      | ^^^^^^^^^
+[error] >  9 |   {{- end }}
+[error]      | ^^^^^^^^^
+[error] > 10 |   annotations:
+[error]      | ^^^^^^^^^
+[error] > 11 |   {{- range $key, $value := .Values.app.annotations }}
+[error]      | ^^^^^^^^^
+[error] > 12 |     {{ $key }}: {{ $value | quote }}
+[error]      | ^^^^^^^^^
+[error] > 13 |   {{- end }}
+[error]      | ^^^^^^^^^
+[error] > 14 | spec:
+[error]      | ^
+[error]   15 |   replicas: {{ .Values.app.front.replicas }}
+[error]   16 |   selector:
+[error]   17 |     matchLabels:
+[error] templates/ingress.yaml: SyntaxError: All collection items must start at the same column (3:1)
+[error]    1 | {{ if $.Values.ingress.enabled }}
+[error]    2 | ---
+[error] >  3 | apiVersion: networking.k8s.io/v1
+[error]      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[error] >  4 | kind: Ingress
+[error]      | ^^^^^^^^^^^^^
+[error] >  5 | metadata:
+[error]      | ^^^^^^^^^^^^^
+[error] >  6 |   name: promyze
+[error]      | ^^^^^^^^^^^^^
+[error] >  7 |   annotations:
+[error]      | ^^^^^^^^^^^^^
+[error] >  8 |   {{- range $key, $value := .Values.ingress.annotations }}
+[error]      | ^^^^^^^^^^^^^
+[error] >  9 |     {{ $key }}: {{ $value | quote }}
+[error]      | ^^^^^^^^^^^^^
+[error] > 10 |   {{- end }}
+[error]      | ^^^^^^^^^^^^^
+[error] > 11 |   labels:
+[error]      | ^^^^^^^^^^^^^
+[error] > 12 |   {{- with .Values.ingress.labels }}
+[error]      | ^^^^^^^^^^^^^
+[error] > 13 |     {{- toYaml . | nindent 4 }}
+[error]      | ^^^^^^^^^^^^^
+[error] > 14 |   {{- end }}
+[error]      | ^^^^^^^^^^^^^
+[error] > 15 | spec:
+[error]      | ^^^^^^^^^^^^^
+[error] > 16 |   {{- if $.Values.ingress.className }}
+[error]      | ^^^^^^^^^^^^^
+[error] > 17 |   ingressClassName: {{ $.Values.ingress.className }}
+[error]      | ^^^^^^^^^^^^^
+[error] > 18 |   {{- end }}
+[error]      | ^^^^^^^^^^^^^
+[error] > 19 |   rules:
+[error]      | ^^^^^^^^^^^^^
+[error] > 20 |     - host: {{ $.Values.ingress.hostnames.app }}
+[error]      | ^^^^^^^^^^^^^
+[error] > 21 |       http:
+[error]      | ^^^^^^^^^^^^^
+[error] > 22 |         paths:
+[error]      | ^^^^^^^^^^^^^
+[error] > 23 |           - pathType: Prefix
+[error]      | ^^^^^^^^^^^^^
+[error] > 24 |             path: "/api/plugin"
+[error]      | ^^^^^^^^^^^^^
+[error] > 25 |             backend:
+[error]      | ^^^^^^^^^^^^^
+[error] > 26 |               service:
+[error]      | ^^^^^^^^^^^^^
+[error] > 27 |                 name: promyze-suggestions
+[error]      | ^^^^^^^^^^^^^
+[error] > 28 |                 port:
+[error]      | ^^^^^^^^^^^^^
+[error] > 29 |                   number: 3000
+[error]      | ^^^^^^^^^^^^^
+[error] > 30 |           - pathType: Prefix
+[error]      | ^^^^^^^^^^^^^
+[error] > 31 |             path: "/api/suggestion"
+[error]      | ^^^^^^^^^^^^^
+[error] > 32 |             backend:
+[error]      | ^^^^^^^^^^^^^
+[error] > 33 |               service:
+[error]      | ^^^^^^^^^^^^^
+[error] > 34 |                 name: promyze-suggestions
+[error]      | ^^^^^^^^^^^^^
+[error] > 35 |                 port:
+[error]      | ^^^^^^^^^^^^^
+[error] > 36 |                   number: 3000
+[error]      | ^^^^^^^^^^^^^
+[error] > 37 |           - pathType: Prefix
+[error]      | ^^^^^^^^^^^^^
+[error] > 38 |             path: "/api"
+[error]      | ^^^^^^^^^^^^^
+[error] > 39 |             backend:
+[error]      | ^^^^^^^^^^^^^
+[error] > 40 |               service:
+[error]      | ^^^^^^^^^^^^^
+[error] > 41 |                 name: promyze-api
+[error]      | ^^^^^^^^^^^^^
+[error] > 42 |                 port:
+[error]      | ^^^^^^^^^^^^^
+[error] > 43 |                   number: 3000
+[error]      | ^^^^^^^^^^^^^
+[error] > 44 |           - pathType: Prefix
+[error]      | ^^^^^^^^^^^^^
+[error] > 45 |             path: "/open"
+[error]      | ^^^^^^^^^^^^^
+[error] > 46 |             backend:
+[error]      | ^^^^^^^^^^^^^
+[error] > 47 |               service:
+[error]      | ^^^^^^^^^^^^^
+[error] > 48 |                 name: promyze-api
+[error]      | ^^^^^^^^^^^^^
+[error] > 49 |                 port:
+[error]      | ^^^^^^^^^^^^^
+[error] > 50 |                   number: 3000
+[error]      | ^^^^^^^^^^^^^
+[error] > 51 |           - pathType: Prefix
+[error]      | ^^^^^^^^^^^^^
+[error] > 52 |             path: "/auth"
+[error]      | ^^^^^^^^^^^^^
+[error] > 53 |             backend:
+[error]      | ^^^^^^^^^^^^^
+[error] > 54 |               service:
+[error]      | ^^^^^^^^^^^^^
+[error] > 55 |                 name: promyze-api
+[error]      | ^^^^^^^^^^^^^
+[error] > 56 |                 port:
+[error]      | ^^^^^^^^^^^^^
+[error] > 57 |                   number: 3000
+[error]      | ^^^^^^^^^^^^^
+[error] > 58 |           - pathType: Prefix
+[error]      | ^^^^^^^^^^^^^
+[error] > 59 |             path: "/public"
+[error]      | ^^^^^^^^^^^^^
+[error] > 60 |             backend:
+[error]      | ^^^^^^^^^^^^^
+[error] > 61 |               service:
+[error]      | ^^^^^^^^^^^^^
+[error] > 62 |                 name: promyze-api
+[error]      | ^^^^^^^^^^^^^
+[error] > 63 |                 port:
+[error]      | ^^^^^^^^^^^^^
+[error] > 64 |                   number: 3000
+[error]      | ^^^^^^^^^^^^^
+[error] > 65 |           - pathType: Prefix
+[error]      | ^^^^^^^^^^^^^
+[error] > 66 |             path: "/techcoach"
+[error]      | ^^^^^^^^^^^^^
+[error] > 67 |             backend:
+[error]      | ^^^^^^^^^^^^^
+[error] > 68 |               service:
+[error]      | ^^^^^^^^^^^^^
+[error] > 69 |                 name: promyze-suggestions
+[error]      | ^^^^^^^^^^^^^
+[error] > 70 |                 port:
+[error]      | ^^^^^^^^^^^^^
+[error] > 71 |                   number: 3000
+[error]      | ^^^^^^^^^^^^^
+[error] > 72 |           - pathType: Prefix
+[error]      | ^^^^^^^^^^^^^
+[error] > 73 |             path: "/"
+[error]      | ^^^^^^^^^^^^^
+[error] > 74 |             backend:
+[error]      | ^^^^^^^^^^^^^
+[error] > 75 |               service:
+[error]      | ^^^^^^^^^^^^^
+[error] > 76 |                 name: front
+[error]      | ^^^^^^^^^^^^^
+[error] > 77 |                 port:
+[error]      | ^^^^^^^^^^^^^
+[error] > 78 |                   number: 80
+[error]      | ^^^^^^^^^^^^^
+[error] > 79 |   {{- if $.Values.ingress.tls.enabled }}
+[error]      | ^^^^^^^^^^^^^
+[error] > 80 |   tls:
+[error]      | ^^^^^^^^^^^^^
+[error] > 81 |     - hosts:
+[error]      | ^^^^^^^^^^^^^
+[error] > 82 |         - {{ $.Values.ingress.hostnames.app | quote }}
+[error]      | ^^^^^^^^^^^^^
+[error] > 83 |       {{- if and .Values.ingress.tls.secrets .Values.ingress.tls.secrets.app }}
+[error]      | ^^^^^^^^^^^^^
+[error] > 84 |       secretName: {{ $.Values.ingress.tls.secrets.app }}
+[error]      | ^^^^^^^^^^^^^
+[error] > 85 |       {{- end }}
+[error]      | ^^^^^^^^^^^^^
+[error] > 86 |   {{- end }}
+[error]      | ^^^^^^^^^^^^^
+[error] > 87 | {{ end }}
+[error]      | ^^^^^^^^^^^^^
+[error] > 88 |
+[error]      | ^
+[error] templates/pvc.yml: SyntaxError: Document contains trailing content not separated by a ... or --- line (2:1)
+[error]    1 | {{ if and .Values.app.databaseEmbedded.enabled .Values.app.databaseEmbedded.pvc.enabled }}
+[error] >  2 | apiVersion: v1
+[error]      | ^^^^^^^^^^^^^^
+[error] >  3 | kind: PersistentVolumeClaim
+[error]      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[error] >  4 | metadata:
+[error]      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[error] >  5 |   name: mongo-pvc
+[error]      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[error] >  6 | spec:
+[error]      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[error] >  7 |   {{- if $.Values.app.databaseEmbedded.pvc.storageClassName }}
+[error]      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[error] >  8 |   storageClassName: {{ $.Values.app.databaseEmbedded.pvc.storageClassName }}
+[error]      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[error] >  9 |   {{- end }}
+[error]      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[error] > 10 |   accessModes:
+[error]      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[error] > 11 |     - {{ $.Values.app.databaseEmbedded.pvc.accessModes }}
+[error]      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[error] > 12 |   resources:
+[error]      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[error] > 13 |     requests:
+[error]      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[error] > 14 |       storage: {{ $.Values.app.databaseEmbedded.pvc.storage }}
+[error]      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[error] > 15 | {{ end }}
+[error]      | ^^^^^^^^^^
+[error] templates/secret.yaml: SyntaxError: Document contains trailing content not separated by a ... or --- line (2:1)
+[error]    1 | {{ if and .Values.app.images.secret .Values.app.images.secret.dockerconfigjson }}
+[error] >  2 | apiVersion: v1
+[error]      | ^^^^^^^^^^^^^^
+[error] >  3 | kind: Secret
+[error]      | ^^^^^^^^^^^^
+[error] >  4 | metadata:
+[error]      | ^^^^^^^^^^^^
+[error] >  5 |   name:  {{ .Values.app.images.secret.name }}
+[error]      | ^^^^^^^^^^^^
+[error] >  6 | type: kubernetes.io/dockerconfigjson
+[error]      | ^^^^^^^^^^^^
+[error] >  7 | data:
+[error]      | ^^^^^^^^^^^^
+[error] >  8 |   .dockerconfigjson: {{ .Values.app.images.secret.dockerconfigjson | quote }}
+[error]      | ^^^^^^^^^^^^
+[error] >  9 | {{ end }}
+[error]      | ^^^^^^^^^^^^
+[error] > 10 | ---
+[error]      | ^
+[error] templates/service.yaml: SyntaxError: All collection items must start at the same column (5:3)
+[error]    3 | kind: Service
+[error]    4 | metadata:
+[error] >  5 |   name: promyze-api
+[error]      |   ^^^^^^^^^^^^^^^^^
+[error] >  6 |   labels:
+[error]      | ^^^^^^^^^
+[error] >  7 |     component: app
+[error]      | ^^^^^^^^^
+[error] >  8 |   {{- range $key, $value := .Values.services.labels }}
+[error]      | ^^^^^^^^^
+[error] >  9 |     {{ $key }}: {{ $value | quote }}
+[error]      | ^^^^^^^^^
+[error] > 10 |   {{- end }}
+[error]      | ^^^^^^^^^
+[error] > 11 |   annotations:
+[error]      | ^^^^^^^^^
+[error] > 12 |   {{- range $key, $value := .Values.services.annotations }}
+[error]      | ^^^^^^^^^
+[error] > 13 |     {{ $key }}: {{ $value | quote }}
+[error]      | ^^^^^^^^^
+[error] > 14 |   {{- end }}
+[error]      | ^^^^^^^^^
+[error] > 15 | spec:
+[error]      | ^
+[error]   16 |   selector:
+[error]   17 |     component: app
+[error]   18 |   ports:
+[warn] values.yaml
+[warn] Code style issues found in the above file. Run Prettier with --write to fix.
+
+
+[32m✅ Linted [YAML] files with [v8r] successfully - (8.98s)[0m
+- Using [v8r v4.0.1] https://megalinter.io/8.0.0/descriptors/yaml_v8r
+- MegaLinter key: [YAML_V8R]
+- Rules config: identified by [v8r]
+- Number of files analyzed: [7]
+
+[32m✅ Linted [REPOSITORY] files with [trufflehog] successfully - (8.64s)[0m
+- Using [trufflehog v3.81.9] https://megalinter.io/8.0.0/descriptors/repository_trufflehog
+- MegaLinter key: [REPOSITORY_TRUFFLEHOG]
+- Rules config: identified by [trufflehog]
+
+[32m✅ Linted [REPOSITORY] files with [trivy] successfully - (9.75s)[0m
+- Using [trivy v0.54.1] https://megalinter.io/8.0.0/descriptors/repository_trivy
+- MegaLinter key: [REPOSITORY_TRIVY]
+- Rules config: identified by [trivy]
+
+[32m✅ Linted [REPOSITORY] files with [kics] successfully - (12.27s)[0m
+- Using [kics v2.1.2] https://megalinter.io/8.0.0/descriptors/repository_kics
+- MegaLinter key: [REPOSITORY_KICS]
+- Rules config: identified by [kics]
+
+[31m❌ Linted [SPELL] files with [cspell]: Found 49 error(s) - (11.35s)[0m
+- Using [cspell v8.14.1] https://megalinter.io/8.0.0/descriptors/spell_cspell
+- MegaLinter key: [SPELL_CSPELL]
+- Rules config: identified by [cspell]
+- Number of files analyzed: [8]
+--Error detail:
+1/8 c07b6764-d933-4c0b-9a6c-54d1905b822f-megalinter_file_names_cspell.txt 1946.04ms
+2/8 Chart.yaml 1129.41ms X
+Chart.yaml:2:7       - Unknown word (promyze)    -- name: promyze
+	 Suggestions: [promise, promote, Promise, pome, prom]
+Chart.yaml:6:47      - Unknown word (Packmind)   -- developers and code with Packmind
+	 Suggestions: [Packing, Packman, Packmen, Paramkind, Pacing]
+Chart.yaml:9:11      - Unknown word (cteyton)    -- - name: cteyton
+	 Suggestions: [cyton, ceylon, clayton, Ceylon, Clayton]
+3/8 templates/deployment.yaml 521.87ms X
+templates/deployment.yaml:43:54     - Unknown word (nindent)    -- app.resources.front | nindent 12 }}
+	 Suggestions: [noindent, indent, ident, intent, findmnt]
+templates/deployment.yaml:95:52     - Unknown word (nindent)    -- app.resources.api | nindent 12 }}
+	 Suggestions: [noindent, indent, ident, intent, findmnt]
+templates/deployment.yaml:109:52    - Unknown word (nindent)    -- app.resources.api | nindent 12 }}
+	 Suggestions: [noindent, indent, ident, intent, findmnt]
+templates/deployment.yaml:115:26    - Unknown word (healthcheck) -- path: /open/healthcheck/ping
+	 Suggestions: [healthpeak]
+templates/deployment.yaml:195:60    - Unknown word (nindent)     -- resources.suggestions | nindent 12 }}
+	 Suggestions: [noindent, indent, ident, intent, findmnt]
+templates/deployment.yaml:201:26    - Unknown word (healthcheck) -- path: /open/healthcheck/ping
+	 Suggestions: [healthpeak]
+templates/deployment.yaml:237:9     - Unknown word (aiagent)     -- name: aiagent
+	 Suggestions: [agent, argent, ailment, adage, aiken]
+templates/deployment.yaml:247:28    - Unknown word (aiagent)     -- replicas: {{ .Values.app.aiagent.replicas }}
+	 Suggestions: [agent, argent, ailment, adage, aiken]
+templates/deployment.yaml:250:18    - Unknown word (aiagent)     -- component: aiagent
+	 Suggestions: [agent, argent, ailment, adage, aiken]
+templates/deployment.yaml:254:20    - Unknown word (aiagent)     -- component: aiagent
+	 Suggestions: [agent, argent, ailment, adage, aiken]
+templates/deployment.yaml:264:32    - Unknown word (aiagent)     -- name: init-container-aiagent
+	 Suggestions: [agent, argent, ailment, adage, aiken]
+templates/deployment.yaml:279:56    - Unknown word (nindent)     -- resources.aiagent | nindent 12 }}
+	 Suggestions: [noindent, indent, ident, intent, findmnt]
+templates/deployment.yaml:285:27    - Unknown word (healthcheck) -- path: /open/healthcheck/ping
+	 Suggestions: [healthpeak]
+4/8 templates/ingress.yaml 467.39ms X
+templates/ingress.yaml:6:9       - Unknown word (promyze)    -- name: promyze
+	 Suggestions: [promise, promote, Promise, pome, prom]
+templates/ingress.yaml:13:20     - Unknown word (nindent)    -- {{- toYaml . | nindent 4 }}
+	 Suggestions: [noindent, indent, ident, intent, findmnt]
+templates/ingress.yaml:27:23     - Unknown word (promyze)    -- name: promyze-suggestions
+	 Suggestions: [promise, promote, Promise, pome, prom]
+templates/ingress.yaml:34:23     - Unknown word (promyze)    -- name: promyze-suggestions
+	 Suggestions: [promise, promote, Promise, pome, prom]
+templates/ingress.yaml:41:23     - Unknown word (promyze)    -- name: promyze-api
+	 Suggestions: [promise, promote, Promise, pome, prom]
+templates/ingress.yaml:48:23     - Unknown word (promyze)    -- name: promyze-api
+	 Suggestions: [promise, promote, Promise, pome, prom]
+templates/ingress.yaml:66:21     - Unknown word (techcoach)  -- path: "/techcoach"
+	 Suggestions: []
+5/8 templates/pvc.yml 4.01ms
+6/8 templates/secret.yaml 110.01ms X
+templates/secret.yaml:1:63      - Unknown word (dockerconfigjson) -- Values.app.images.secret.dockerconfigjson }}
+	 Suggestions: []
+templates/secret.yaml:6:21      - Unknown word (dockerconfigjson) -- type: kubernetes.io/dockerconfigjson
+	 Suggestions: []
+templates/secret.yaml:8:4       - Unknown word (dockerconfigjson) -- .dockerconfigjson: {{ .Values.app.images
+	 Suggestions: []
+templates/secret.yaml:8:51      - Unknown word (dockerconfigjson) -- Values.app.images.secret.dockerconfigjson | quote }}
+	 Suggestions: []
+7/8 templates/service.yaml 520.85ms X
+templates/service.yaml:5:9       - Unknown word (promyze)    -- name: promyze-api
+	 Suggestions: [promise, promote, Promise, pome, prom]
+templates/service.yaml:47:9      - Unknown word (promyze)    -- name: promyze-suggestions
+	 Suggestions: [promise, promote, Promise, pome, prom]
+templates/service.yaml:68:9      - Unknown word (packmind)   -- name: packmind-aiagent
+	 Suggestions: [packing, packman, packmen, paramkind, pacing]
+templates/service.yaml:68:18     - Unknown word (aiagent)    -- name: packmind-aiagent
+	 Suggestions: [agent, argent, ailment, adage, aiken]
+templates/service.yaml:70:16     - Unknown word (aiagent)    -- component: aiagent
+	 Suggestions: [agent, argent, ailment, adage, aiken]
+templates/service.yaml:80:16     - Unknown word (aiagent)    -- component: aiagent
+	 Suggestions: [agent, argent, ailment, adage, aiken]
+templates/service.yaml:89:9      - Unknown word (packmind)   -- name: packmind-redis
+	 Suggestions: [packing, packman, packmen, paramkind, pacing]
+8/8 values.yaml 1317.19ms X
+values.yaml:3:10      - Unknown word (promyze)    -- api: promyze/promyze-api
+	 Suggestions: [promise, promote, Promise, pome, prom]
+values.yaml:3:18      - Unknown word (promyze)    -- api: promyze/promyze-api
+	 Suggestions: [promise, promote, Promise, pome, prom]
+values.yaml:4:12      - Unknown word (promyze)    -- proxy: promyze/promyze-proxy
+	 Suggestions: [promise, promote, Promise, pome, prom]
+values.yaml:4:20      - Unknown word (promyze)    -- proxy: promyze/promyze-proxy
+	 Suggestions: [promise, promote, Promise, pome, prom]
+values.yaml:5:18      - Unknown word (promyze)    -- suggestions: promyze/promyze-suggestions
+	 Suggestions: [promise, promote, Promise, pome, prom]
+values.yaml:6:5       - Unknown word (aiagent)    -- aiagent: promyze/packmind-ai
+	 Suggestions: [agent, argent, ailment, adage, aiken]
+values.yaml:6:22      - Unknown word (packmind)   -- aiagent: promyze/packmind-ai-agent
+	 Suggestions: [packing, packman, packmen, paramkind, pacing]
+values.yaml:11:9      - Unknown word (dockerconfigjson) -- # dockerconfigjson:
+	 Suggestions: []
+values.yaml:12:44     - Unknown word (Promyze)          -- annotations to add on Promyze deployments
+	 Suggestions: [promise, Promise, Promote, Pome, Prom]
+values.yaml:13:39     - Unknown word (Promyze)          -- annotations to add on Promyze deployments
+	 Suggestions: [promise, Promise, Promote, Pome, Prom]
+values.yaml:18:3      - Unknown word (aiagent)          -- aiagent:
+	 Suggestions: [agent, argent, ailment, adage, aiken]
+values.yaml:33:7      - Unknown word (PROMYZE)          -- # PROMYZE_URL: http://my.promyze
+	 Suggestions: [PROMISE, PROMOTE, Promise, POME, PROM]
+values.yaml:53:5      - Unknown word (aiagent)          -- aiagent:
+	 Suggestions: [agent, argent, ailment, adage, aiken]
+values.yaml:76:44     - Unknown word (Promyze)          -- annotations to add on Promyze services
+	 Suggestions: [promise, Promise, Promote, Pome, Prom]
+values.yaml:77:39     - Unknown word (Promyze)          -- annotations to add on Promyze services
+	 Suggestions: [promise, Promise, Promote, Pome, Prom]
+CSpell: Files checked: 8, Issues found: 49 in 6 files.
+
+
+[32m✅ Linted [REPOSITORY] files with [grype] successfully - (14.61s)[0m
+- Using [grype v0.79.5] https://megalinter.io/8.0.0/descriptors/repository_grype
+- MegaLinter key: [REPOSITORY_GRYPE]
+- Rules config: [.grype.yaml]
+
+[32m✅ Linted [KUBERNETES] files with [kubescape] successfully - (10.0s)[0m
+- Using [kubescape v2.9.0] https://megalinter.io/8.0.0/descriptors/kubernetes_kubescape
+- MegaLinter key: [KUBERNETES_KUBESCAPE]
+- Rules config: identified by [kubescape]
+
+[32m✅ Linted [REPOSITORY] files with [checkov] successfully - (18.97s)[0m
+- Using [checkov v3.2.232] https://megalinter.io/8.0.0/descriptors/repository_checkov
+- MegaLinter key: [REPOSITORY_CHECKOV]
+- Rules config: [.checkov.yml]
+
+Unable to find git repository to list updated files
+[Updated Sources Reporter] No source file has been formatted or fixed
+
++----SUMMARY----+------------+---------------+-------+-------+--------+--------------+
+| Descriptor    | Linter     | Mode          | Files | Fixed | Errors | Elapsed time |
++---------------+------------+---------------+-------+-------+--------+--------------+
+| ✅ COPYPASTE  | jscpd      | project       |   n/a |       |      0 |        4.91s |
+| ❌ KUBERNETES | helm       | project       |   n/a |       |      1 |        1.21s |
+| ✅ KUBERNETES | kubescape  | project       |   n/a |       |      0 |        10.0s |
+| ✅ REPOSITORY | checkov    | project       |   n/a |       |      0 |       18.97s |
+| ❌ REPOSITORY | devskim    | project       |   n/a |       |      1 |        4.21s |
+| ✅ REPOSITORY | dustilock  | project       |   n/a |       |      0 |        0.21s |
+| ✅ REPOSITORY | gitleaks   | project       |   n/a |       |      0 |        0.75s |
+| ❌ REPOSITORY | git_diff   | project       |   n/a |       |      1 |        0.03s |
+| ✅ REPOSITORY | grype      | project       |   n/a |       |      0 |       14.61s |
+| ✅ REPOSITORY | kics       | project       |   n/a |       |      0 |       12.27s |
+| ✅ REPOSITORY | secretlint | project       |   n/a |       |      0 |        3.46s |
+| ✅ REPOSITORY | syft       | project       |   n/a |       |      0 |         1.9s |
+| ✅ REPOSITORY | trivy      | project       |   n/a |       |      0 |        9.75s |
+| ✅ REPOSITORY | trivy-sbom | project       |   n/a |       |      0 |        3.02s |
+| ✅ REPOSITORY | trufflehog | project       |   n/a |       |      0 |        8.64s |
+| ❌ SPELL      | cspell     | list_of_files |     8 |       |     49 |       11.35s |
+| ❌ SPELL      | lychee     | list_of_files |     7 |       |      1 |        1.22s |
+| ⚠️ YAML       | prettier   | list_of_files |     7 |       |      1 |        2.34s |
+| ✅ YAML       | v8r        | list_of_files |     7 |       |      0 |        8.98s |
+| ❌ YAML       | yamllint   | list_of_files |     7 |       |     14 |        1.07s |
++---------------+------------+---------------+-------+-------+--------+--------------+
+
+[34mYou could have same capabilities but better runtime performances if you use a MegaLinter flavor:[0m
+- [terraform] oxsecurity/megalinter/flavors/terraform@v8 (54 linters) https://megalinter.io/8.0.0/flavors/terraform/
+- [cupcake] oxsecurity/megalinter/flavors/cupcake@v8 (83 linters) https://megalinter.io/8.0.0/flavors/cupcake/
+
+[31m❌ Error(s) have been found during linting[0m
+To disable linters or customize their checks, you can use a .mega-linter.yml file at the root of your repository
+More info at https://megalinter.io/8.0.0/configuration/

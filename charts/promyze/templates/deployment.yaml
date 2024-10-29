@@ -244,7 +244,9 @@ metadata:
     {{ $key }}: {{ $value | quote }}
   {{- end }}
 spec:
+  {{- if .Values.app.aiagent.replicas }}
   replicas: {{ .Values.app.aiagent.replicas }}
+  {{- end }}
   selector:
     matchLabels:
       component: aiagent

@@ -1,0 +1,35 @@
+Results of yamllint linter (version 1.35.1)
+See documentation on https://megalinter.io/8.0.0/descriptors/yaml_yamllint/
+-----------------------------------------------
+
+❌ [ERROR] for workspace /tmp/lint
+Linter raw log:
+Chart.yaml
+  1:1       warning  missing document start "---"  (document-start)
+
+templates/deployment.yaml
+  8:5       error    syntax error: could not find expected ':' (syntax)
+
+templates/ingress.yaml
+  1:1       warning  missing document start "---"  (document-start)
+  9:5       error    syntax error: could not find expected ':' (syntax)
+
+templates/pvc.yml
+  1:1       warning  missing document start "---"  (document-start)
+  2:1       error    syntax error: expected '<document start>', but found '<block mapping start>' (syntax)
+  15:10     error    no new line character at the end of file  (new-line-at-end-of-file)
+
+templates/secret.yaml
+  1:1       warning  missing document start "---"  (document-start)
+  2:1       error    syntax error: expected '<document start>', but found '<block mapping start>' (syntax)
+  10:4      error    no new line character at the end of file  (new-line-at-end-of-file)
+
+templates/service.yaml
+  9:5       error    syntax error: could not find expected ':' (syntax)
+
+values.yaml
+  1:1       warning  missing document start "---"  (document-start)
+  10:7      warning  comment not indented like content  (comments-indentation)
+  33:5      warning  comment not indented like content  (comments-indentation)
+
+

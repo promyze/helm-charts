@@ -1,0 +1,28 @@
+﻿{{- if .Values.app.aiagent.autoscaling.enabled }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  labels:
+    component: aiagent
+  {{- range $key, $value := .Values.app.labels }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  annotations:
+  {{- range $key, $value := .Values.app.annotations }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: aiagent
+  minReplicas: {{ .Values.app.aiagent.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.app.aiagent.autoscaling.maxReplicas }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.app.aiagent.autoscaling.targetCPUUtilizationPercentage }}
+{{- end }}
