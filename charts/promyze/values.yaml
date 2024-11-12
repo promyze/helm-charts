@@ -90,6 +90,10 @@
         cpu: "100m"
         memory: "128Mi"
 
+affinity: {}
+nodeSelector: {}
+tolerations: []
+
 services:
   annotations: {}  # annotations to add on Promyze services
   labels: {}  # annotations to add on Promyze services
