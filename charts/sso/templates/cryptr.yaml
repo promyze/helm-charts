@@ -1,0 +1,53 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cryptr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: cryptr
+  template:
+    metadata:
+      labels:
+        component: cryptr
+    spec:
+      initContainers:
+        - name: wait-for-db
+          image: busybox
+          command: [ 'sh', '-c', 'echo "Wait 20 seconds for the DB to be ready..."; sleep 20' ]
+      containers:
+        - name: cryptr
+          image: {{ .Values.cryptr.image }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4000
+          env:
+          {{- range $key, $value := .Values.cryptr.env }}
+          - name: {{ $key }}
+            value: "{{ $value }}"
+          {{- end }}
+          {{- range .Values.cryptr.secrets }}
+          - name: {{ . }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.cryptr.secretsName }}
+                key: {{ . }}
+           {{- end }}
+      {{- if and .Values.images.secret .Values.images.secret.name }}
+      imagePullSecrets:
+        - name: {{ .Values.images.secret.name }}
+      {{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cryptr-service
+  labels:
+    component: cryptr
+spec:
+  selector:
+    component: cryptr
+  ports:
+    - port: 4000
+      targetPort: 4000
