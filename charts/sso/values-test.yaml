@@ -1,0 +1,98 @@
+﻿images:
+  secret:
+    name: docker-registry-key
+    dockerconfigjson: "ewoJImF1dGhzIjogewoJCSJyZWdpc3RyeS5naXRsYWIuY29tIjogewoJCQkiYXV0aCI6ICJZM1JsZVhSdmJqcG5iSEJoZEMxMVdVaFhlVGczVEhwcE5IVTFXRjlVTTBNNFNBPT0iCgkJfSwKCQkidGhlbWlzLXJlZ2lzdHJ5LnByb215emUuY29tIjogewoJCQkiYXV0aCI6ICJkR2hsYldsekxYSmxZV1J2Ym14NU9uUm9RSEJoYzNNeU1ERTMiCgkJfQoJfQp9"
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  labels: {}
+  tls:
+    enabled: true
+    secrets:
+      secretName: cryptr-promyze-com-fixed-tls
+  hostnames:
+    - sso.promyze.com
+    - saml.sso.promyze.com
+    - dashboard.sso.promyze.com
+    - accounts.sso.promyze.com
+    - onboarding.sso.promyze.com
+    - ui-components.sso.promyze.com
+
+vault:
+  #image: cryptr/promyze-vault
+  image: registry.gitlab.com/promyze/app/sso-cryptr:vault-amd64
+  env:
+    JWT_ISSUER: "promyze-vault-eu"
+    #This can be passed as secrets below
+    DATABASE_URL: "postgres://postgres:postgres@postgres:5432/vault" # if you use the default postgres
+    # TO FILL or use secrets. See the documentation on how to generate these values.
+    JWT_SECRET_KEY: 'P6YAj7/fYnKFYB4xVphF2Y9xsdZgqGiMhl1Tk305zcY='
+    AES_SECRET_KEY: 'Jf0lareuRvGDQsUqmBGferzPm/4XJnYYVn6oY5QKNm4='
+    SECRET_KEY_BASE: '05NSptzurNX47f+TjxMVK0JeWh44oMXN7RofwKtpN6PA5fCjBjVxURRFI914gb9x1wLOmJ//HpxV9wElu1iQ3g'
+    RELEASE_COOKIE: 'cxIr38yILX3hz/mt2xy7b4AjGXH9ZEqKK24R3xEMknqv0UMoF0pUtA=='
+    # If secrets are embedded
+    #secretsName: vault-secrets
+#   secrets:
+#     - DATABASE_URL
+#     - JWT_SECRET_KEY
+#     - AES_SECRET_KEY
+#     - SECRET_KEY_BASE
+#     - RELEASE_COOKIE
+  persistence:
+    enabled: true
+    storageClass: local-path
+    accessMode: ReadWriteOnce
+    size: 256Mi
+
+postgres:
+  image: timescale/timescaledb:latest-pg14
+  env:
+    POSTGRES_USER: "postgres"
+    POSTGRES_PASSWORD: "postgres"
+  persistence:
+    enabled: true
+    storageClass: ""
+    accessMode: ReadWriteOnce
+    size: 256Mi
+
+cryptr:
+  #image: cryptr/promyze-app
+  image: registry.gitlab.com/promyze/app/sso-cryptr:cryptr-amd64
+  env:
+    #Main Domain Name
+    HOST_DOMAIN_NAME: "sso.promyze.com" # Your main cryptr domain
+    HOST_DOMAIN_URL: "https://sso.promyze.com" # Your main cryptr URL
+
+    # Should not be changed
+    VAULT_URL: "http://vault:4000" # Internal service
+
+    # Change if you use a different database
+    DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/cryptr"
+    TIMESCALE_DB_URL: "postgresql://postgres:postgres@postgres:5432/cryptr_logs"
+
+    # See the doc (README.md) on how to generate these values
+    VAULT_CLIENT_ID: "392a85ac-1005-47a7-bcbd-a25a71b6d2ab"
+    # TO FILL or use secrets.
+    VAULT_CLIENT_SECRET: "4c3-L4ug3s5vF4h_7u6Qj2h9F7YsA6bWb1o2g9QkMOSnu_Yp2K4DgeeQb97qQK7sIS5Aep2gzmUcFmFVhq3FVkl1w5YCjD7lysdF6WMy7fconLWAo6POwrUJOh4UiNP9"
+
+    # Either use Dashboard Backdoor
+    DASHBOARD_BACKDOOR: "true"
+    DASHBOARD_EMAIL: "cedric.teyton@packmind.com"
+    DASHBOARD_PASSWORD: "packmindpackmindpackmind"
+
+    AES_SECRET_KEY: 'zFslrhyK2e6MyLKVk4jR1NFPnX/zlBJtSb+v97L7hzU='
+    API_KEY_SECRET_BASE: 'LZslv7Lwp9Xq2XqkHCMrbhljbjPb0REmL0G3EOfSUM4='
+    SANDBOX_API_KEY_PEPPER: 'naxzb4sWBfm8kCq8SLA79hgRz1i1IV1LfQqI9OAFIv8='
+    SANDBOX_API_KEY_SECRET_BASE: 'aLRsThrnjxqO4VR4B+rTDjJ2ibKxo4wUoo3UjjA5PKE='
+    CLIENT_SECRET_SALT: '8H7OTuzLkgd/bc28tFkgBFyjW4vvzg97wp1LvQdCImY='
+    TENANT_API_SECRET_KEY: 'SRWeAMu2m7LB3mhXNPra1Yd1N3KCYo6Hd3TCT9fo0dM='
+    DIR_SYNC_SECRET_BASE: 'rZgucAUXtgNmqSrbU47YdUpPeCDWrlUVlUUQ9AWZ008='
+    SANDBOX_DIR_SYNC_SECRET_BASE: '/4YEZam2V3GWe3rEPq4tiISQKtkOygqJbSOGKSZFnEM='
+    DIRECTORY_SYNC_PEPPER: '08l3GY4lJEsJnqjVe/qRGAAp4SbJeNL2ajcCiPMJ/p5kNtgp3B2Aqp9ZogVlrf5Bi5IkeW5zJri71hIAz5ASEg'
+    SECRET_KEY_BASE: 'RTGzbZdos98Nw7691jfBUjxjVZcoqN9J4dG1PJQYCtg6gy5ukCpeTxOV3ZA795Xd4UjXbFZJN+IrKzqF0tJN3w'
+    SERVICE_MANAGER_SECRET: 'KrZhKt40muS8imiKr3VYB68/6rDPQtv1hgk7WF08djk='
+
+    LICENSE_KEY: 'eyJhbGciOiJSUzI1NiJ9.eyJhY2NvdW50X2RvbWFpbiI6InByb215emUiLCJleHBpcmVkX2F0IjoxNzM1Njg5NjAwLCJmZWF0dXJlcyI6WyJzc29fY29ubmVjdGlvbiJdLCJncmFjZV9wZXJpb2QiOjcsIm9yZ19kb21haW5zIjpbImFjbWUiXSwicmVnaW9uIjoiZXVfd2VzdCIsInJlbmV3YWxfd2luZG93Ijo3LCJ0eXBlIjoidHJpYWwiLCJ2ZXJzaW9uX3N0YXJ0IjoiMS4wLjAtcmMzNSJ9.UyVMZlZUAxTlMduYt201goeLd3MhR7sJKqeiaa2BLz3lpIpMrGH6HyunxRfRiG4D1GamDykirSASd3tFTn27_SsTCwt6Zdw9wfW3QEsj1KOCXNWOLbiDGNkW_wEz9A0gPtxAA9jIAL92LB8ftqWiiSTRXbZYXNlZ2Q8CZAzoCjpvxG_5MCwvC2H02uZSOoFDtmHWqt_1SaKQA5SjZ00QcNLJdiaehD2yVSanCQM81EdvXtbrPnfS1wflL1rVkS07t9kJdM8XIkHpdx4-6hIgBEhMMCWwnSDjVTBW4jlYHZp7a1fF722lq9e91Tw4AEnlfIjNZ5AOARR_cj2VoQPeDiH9u79HUxnUUtxnNR72Hi7eB83G731o5IhrdD5VTodpwXnIp8J0MhFP13sypnokStp4NR1xDHGJ4NGMiaN-Cca9i_bnGBZT97T0-44YNUJ1Ifoz-CMlrm1oi-G9QmXIDm23xBO0cyVUHt3NGmWDymalXsbFI8AUMbxR-gkVKSoNHD7O_XvQsTy9i2BngjIPJyfTrYjuZtCZkVaoR1ybbqXcgNZgqpIfQHq3OSyXMpNla84-BUKnNHsHzzuCr70bI9jp_fk9cGZDDQ57xRke7CmjCHTJzWSXBZsjCazMGzeOAbyDhe6dMpOukMfN5RHzLmG55QJfaFM9MMLgQ61HE0E'
