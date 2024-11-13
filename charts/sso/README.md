@@ -100,7 +100,7 @@ Now the `cryptr` should be updated and running.
 You should then open a shell inside the pod `cryptr` and run the following commands:
 ```bash
 /app> bin/cleeck_umbrella remote
-/app> Cleeck.Accounts.create(%{name: "Promyze", members: [%{email: "cedric.teyton@promyze.com"}]})
+/app> Cleeck.Accounts.create(%{name: "Promyze", members: [%{email: "<EMAIL_USED_IN_BACKDOOR_EMAIL>>"}]})
 /app> Cleeck.Accounts.toggle_refresh_tokens(Cleeck.Accounts.get!("promyze"))
 ```
 
