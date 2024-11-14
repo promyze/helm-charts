@@ -56,25 +56,25 @@
   resources:
     api:
       limits:
-        cpu: "750m"
+        cpu: "1000m"
         memory: "2Gi"
       requests:
-        cpu: "100m"
+        cpu: "200m"
         memory: "128Mi"
     suggestions:
       limits:
-        cpu: "750m"
+        cpu: "1000m"
         memory: "2Gi"
       requests:
-        cpu: "100m"
-        memory: "128Mi"
+        cpu: "500m"
+        memory: "256Mi"
     aiagent:
       limits:
-        cpu: "750m"
+        cpu: "1000m"
         memory: "2Gi"
       requests:
-        cpu: "100m"
-        memory: "128Mi"
+        cpu: "500m"
+        memory: "256Mi"
     front:
       limits:
         cpu: "500m"
