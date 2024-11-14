@@ -4,7 +4,7 @@
     proxy: promyze/promyze-proxy
     suggestions: promyze/promyze-suggestions
     aiagent: promyze/packmind-ai-agent
-    tag: 5.1.0  # comment this if the images below are custom and contain already a tag
+    tag: 5.2.0  # comment this if the images below are custom and contain already a tag
     imagePullPolicy: Always
     # secret:
       # name: docker-registry-key
@@ -15,23 +15,23 @@
     replicas: 1
   suggestions:
     replicas: 2
-    #autoscaling:
-    #      enabled: true
-    #      minReplicas: 1
-    #      maxReplicas: 4
-    #      targetCPUUtilizationPercentage: 50
+    # autoscaling:
+    #   enabled: true
+    #   minReplicas: 1
+    #   maxReplicas: 4
+    #   targetCPUUtilizationPercentage: 50
   aiagent:
     replicas: 2
-#    autoscaling:
-#      enabled: true
-#      minReplicas: 1
-#      maxReplicas: 20
-#      targetCPUUtilizationPercentage: 50
+    #  autoscaling:
+    #    enabled: true
+    #    minReplicas: 1
+    #    maxReplicas: 20
+    #    targetCPUUtilizationPercentage: 50
     variables:
-      #LOG_LEVEL: debug
-      #MAX_DEBUG_RETRY: 10
-      #MAX_JOBS_TIMEOUT: 600000
-      #AI_REQUEST_TIMEOUT: 60000
+      # LOG_LEVEL: debug
+      # MAX_DEBUG_RETRY: 10
+      # MAX_JOBS_TIMEOUT: 600000
+      # AI_REQUEST_TIMEOUT: 60000
   databaseEmbedded:
     enabled: true  # use an internal mongodb in the cluster
     pvc:

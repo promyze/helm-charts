@@ -1,18 +1,19 @@
-﻿#images:
-#  secret:
-#   name: docker-registry-key
-#   dockerconfigjson: ""
+﻿# images:
+#   secret:
+#     name: docker-registry-key
+#     dockerconfigjson: ""
 
 ingress:
   enabled: true
-  #className: "TO_FILL"
+  # className: "TO_FILL"
   annotations:
     cert-manager.io/cluster-issuer: "TO_FILL"
   labels: {}
   tls:
-    enabled: false # enable if you use TLS
-    #secrets:
-    #  secretName: sso-tls-secret
+    # enable if you use TLS (recommended)
+    enabled: false
+    # secrets:
+    #   secretName: sso-tls-secret
   hostnames:
     - sso.acme.com # main root url, update the five below
     - saml.sso.acme.com
