@@ -2,7 +2,9 @@ name: Release
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+      - dev
   workflow_dispatch:
 
 permissions:
@@ -24,8 +26,28 @@ jobs:
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
       - name: Add dependency chart repositories
         run: ./scripts/add_helm_repo.sh
-      - name: Run chart-releaser
+       # For main branch: Use chart-releaser to create a release
+      - name: Run chart-releaser for main branch
+        if: github.ref == 'refs/heads/main'
         uses: helm/chart-releaser-action@v1.5.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           CR_SKIP_EXISTING: true
+
+      # For dev branch: Push charts to a directory on the dev branch without creating a release
+      - name: Package Helm chart (for dev branch)
+        if: github.ref == 'refs/heads/dev'
+        run: |
+         mkdir -p dev-charts
+         helm package ./charts/promyze --destination ./dev-charts/
+         helm repo index dev-charts/ --url https://raw.githubusercontent.com/promyze/helm-charts/dev/dev-charts/
+
+      - name: Commit and push charts to dev branch
+        if: github.ref == 'refs/heads/dev'
+        run: |
+         git checkout dev
+         git add dev-charts/*
+         git commit -m "Add/Update Helm charts under development"
+         git push origin dev
+
+

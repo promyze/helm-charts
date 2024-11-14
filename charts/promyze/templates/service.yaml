@@ -61,6 +61,48 @@ spec:
     - name: http
       port: 3000
       targetPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: packmind-aiagent
+  labels:
+    component: aiagent
+  {{- range $key, $value := .Values.services.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  annotations:
+  {{- range $key, $value := .Values.services.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+spec:
+  selector:
+    component: aiagent
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: packmind-redis
+  labels:
+    component: redis
+  {{- range $key, $value := .Values.services.labels }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  annotations:
+  {{- range $key, $value := .Values.services.annotations }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
+spec:
+  selector:
+    component: redis
+  ports:
+    - name: http
+      port: 6379
+      targetPort: 6379
 {{ if .Values.app.databaseEmbedded.enabled }}
 ---
 apiVersion: v1

@@ -1,0 +1,131 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: postgres
+  template:
+    metadata:
+      labels:
+        component: postgres
+    spec:
+      initContainers:
+        - name: init-cleanup-lost-found-dir
+          image: busybox:1.35
+          command: [ "/bin/sh", "-c" ]
+          args:
+            - |
+              if [ -d "/var/lib/postgresql/data/lost+found" ]; then
+                rm -rf /var/lib/postgresql/data/lost+found
+                echo "Deleted lost+found directory."
+              else
+                echo "No lost+found directory found."
+              fi
+          volumeMounts:
+            - name: postgres-data-sso
+              mountPath: /var/lib/postgresql/data
+      containers:
+        - name: postgres
+          image: {{ .Values.postgres.image }}
+          ports:
+            - containerPort: 5432
+          env:
+            {{- range $key, $value := .Values.postgres.env }}
+            - name: {{ $key }}
+              value: "{{ $value }}"
+            {{- end }}
+          volumeMounts:
+            - name: postgres-data-sso
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-data-sso
+          persistentVolumeClaim:
+            claimName: postgres-pvc-sso
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    component: postgres
+spec:
+  selector:
+    component: postgres
+  ports:
+    - port: 5432
+      targetPort: 5432
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc-sso
+spec:
+  accessModes:
+    - {{ .Values.postgres.persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.postgres.persistence.size }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: postgres-init-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: postgres-init-container
+          image: {{ .Values.postgres.image }}
+          command: ["/bin/bash", "/scripts/init-databases.sh"]
+          env:
+          {{- range $key, $value := .Values.postgres.env }}
+            - name: {{ $key }}
+              value: "{{ $value }}"
+          {{- end }}
+          volumeMounts:
+            - name: init-scripts
+              mountPath: /scripts
+      restartPolicy: OnFailure
+      volumes:
+        - name: init-scripts
+          configMap:
+            name: postgres-init-script-sso
+            defaultMode: 0755
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init-script-sso
+data:
+  init-databases.sh: |
+    #!/bin/bash
+    set -e
+    POSTGRES_HOST=postgres
+
+    echo "Wait for PostgreSQL to be ready..."
+    until pg_isready -h $POSTGRES_HOST -p 5432; do
+      sleep 1
+    done
+
+    echo "PostgreSQL is ready, init scripts..."
+
+    function create_db() {
+      DB_NAME=$1
+      echo "Check if DB '$DB_NAME' exists..."
+      RESULT=$(PGPASSWORD=$POSTGRES_PASSWORD psql -h $POSTGRES_HOST -U "$POSTGRES_USER" -d postgres -tAc "SELECT 1 FROM pg_database WHERE datname='$DB_NAME'")
+      if [ "$RESULT" != "1" ]; then
+        echo "Database '$DB_NAME' does not exist, will be created..."
+        PGPASSWORD=$POSTGRES_PASSWORD psql -h $POSTGRES_HOST -U "$POSTGRES_USER" -d postgres -c "CREATE DATABASE $DB_NAME OWNER $POSTGRES_USER"
+      else
+        echo "Database '$DB_NAME' already exists."
+      fi
+    }
+
+    create_db "vault"
+    create_db "cryptr"
+    create_db "cryptr_logs"
+
+    echo "Init script ready"

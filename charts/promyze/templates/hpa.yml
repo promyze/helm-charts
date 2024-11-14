@@ -1,0 +1,64 @@
+﻿{{- if and .Values.app.aiagent.autoscaling .Values.app.aiagent.autoscaling.enabled }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-aiagent
+  labels:
+    component: aiagent
+  {{- range $key, $value := .Values.app.labels }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  {{- if .Values.app.annotations }}
+  annotations:
+  {{- range $key, $value := .Values.app.annotations }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  {{- end }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: aiagent
+  minReplicas: {{ .Values.app.aiagent.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.app.aiagent.autoscaling.maxReplicas }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.app.aiagent.autoscaling.targetCPUUtilizationPercentage }}
+{{- end }}
+---
+{{- if and .Values.app.suggestions.autoscaling .Values.app.suggestions.autoscaling.enabled }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-suggestions
+  labels:
+    component: suggestions
+  {{- range $key, $value := .Values.app.labels }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  {{- if .Values.app.annotations }}
+  annotations:
+  {{- range $key, $value := .Values.app.annotations }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  {{- end }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: suggestions
+  minReplicas: {{ .Values.app.suggestions.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.app.suggestions.autoscaling.maxReplicas }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.app.suggestions.autoscaling.targetCPUUtilizationPercentage }}
+  {{- end }}
+

@@ -1,2 +1,6 @@
 # downloaded charts
 charts/*/charts
+.kubeconfig
+charts/sso/values-*
+charts/sso/.env.*
+charts/promyze/values-*

@@ -1,0 +1,71 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vault
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: vault
+  template:
+    metadata:
+      labels:
+        component: vault
+    spec:
+      initContainers:
+        - name: wait-for-db
+          image: busybox
+          command: [ 'sh', '-c', 'echo "Wait 30 seconds for the DB to be ready..."; sleep 30' ]
+      containers:
+        - name: vault
+          image: {{ .Values.vault.image }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4000
+          env:
+          {{- range $key, $value := .Values.vault.env }}
+          - name: {{ $key }}
+            value: "{{ $value }}"
+          {{- end }}
+          {{- range .Values.vault.secrets }}
+          - name: {{ . }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.vault.secretsName }}
+                key: {{ . }}
+          {{- end }}
+          volumeMounts:
+            - name: vault-data
+              mountPath: /vault/data
+      {{- if and .Values.images.secret .Values.images.secret.name }}
+      imagePullSecrets:
+        - name: {{ .Values.images.secret.name }}
+      {{- end }}
+      volumes:
+        - name: vault-data
+          persistentVolumeClaim:
+            claimName: vault-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vault
+  labels:
+    component: vault
+spec:
+  selector:
+    component: vault
+  ports:
+    - port: 4000
+      targetPort: 4000
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: vault-pvc
+spec:
+  accessModes:
+    - {{ .Values.vault.persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.vault.persistence.size }}

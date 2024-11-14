@@ -129,6 +129,8 @@ spec:
            initialDelaySeconds: 30
            periodSeconds: 30
           env:
+            - name: AI_AGENT_REMOTE_URL
+              value: "http://packmind-aiagent:3000"
             - name: NO_ENGINE
               value: 'true'
             - name: MONGO_URI
@@ -177,12 +179,16 @@ metadata:
   {{- range $key, $value := .Values.app.labels }}
     {{ $key }}: {{ $value | quote }}
   {{- end }}
+  {{- if .Values.app.annotations }}
   annotations:
   {{- range $key, $value := .Values.app.annotations }}
     {{ $key }}: {{ $value | quote }}
   {{- end }}
+  {{- end }}
 spec:
+  {{- if .Values.app.suggestions.replicas }}
   replicas: {{ .Values.app.suggestions.replicas }}
+  {{- end }}
   selector:
     matchLabels:
       component: suggestions
@@ -225,6 +231,8 @@ spec:
            initialDelaySeconds: 30
            periodSeconds: 30
           env:
+            - name: AI_AGENT_REMOTE_URL
+              value: "http://packmind-aiagent:3000"
             - name: MONGO_URI
               {{- if .Values.app.databaseUri.value }}
               value: {{ .Values.app.databaseUri.value }}
@@ -250,6 +258,166 @@ spec:
       imagePullSecrets:
         - name: {{ .Values.app.images.secret.name }}
       {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aiagent
+  labels:
+  {{- range $key, $value := .Values.app.labels }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  annotations:
+  {{- range $key, $value := .Values.app.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+spec:
+  {{- if .Values.app.aiagent.replicas }}
+  replicas: {{ .Values.app.aiagent.replicas }}
+  {{- end }}
+  selector:
+    matchLabels:
+      component: aiagent
+  template:
+    metadata:
+      labels:
+        component: aiagent
+      {{- range $key, $value := .Values.app.labels }}
+        {{ $key }}: {{ $value | quote }}
+      {{- end }}
+      annotations:
+      {{- range $key, $value := .Values.app.annotations }}
+        {{ $key }}: {{ $value | quote }}
+      {{- end }}
+    spec:
+      containers:
+        - name: aiagent
+          {{- if .Values.app.images.tag }}
+          image: {{ .Values.app.images.aiagent }}:{{ .Values.app.images.tag }}
+          {{ else }}
+          image: {{ .Values.app.images.aiagent }}
+          {{- end }}
+          {{- if .Values.app.images.imagePullPolicy }}
+          imagePullPolicy:  {{ .Values.app.images.imagePullPolicy }}
+          {{- end }}
+          {{- if .Values.app.resources.aiagent }}
+          resources:
+            {{- toYaml .Values.app.resources.aiagent | nindent 12 }}
+          {{- end }}
+          ports:
+            - containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /open/healthcheck/ping
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          env:
+            - name: SERVER_PORT
+              value: "3000"
+            - name: REDIS_HOST
+              value: "packmind-redis"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: MONGO_URI
+              {{- if .Values.app.databaseUri.value }}
+              value: {{ .Values.app.databaseUri.value }}
+              {{- end }}
+              {{- if .Values.app.databaseUri.secret }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.app.databaseUri.secret.name }}
+                  key: {{ .Values.app.databaseUri.secret.key }}
+              {{- end }}
+            {{- range $key, $value := .Values.app.aiagent.variables }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- range $key, $value := .Values.app.secrets }}
+            - name: {{ $value.envVariable }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $value.secretName }}
+                  key: {{ $value.secretKey }}
+            {{- end }}
+      {{- if and .Values.app.images.secret .Values.app.images.secret.name }}
+      imagePullSecrets:
+        - name: {{ .Values.app.images.secret.name }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    component: redis
+  {{- range $key, $value := .Values.app.labels }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  annotations:
+  {{- range $key, $value := .Values.app.annotations }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
+spec:
+  selector:
+    matchLabels:
+      component: redis
+  template:
+    metadata:
+      labels:
+        component: redis
+      {{- range $key, $value := .Values.app.labels }}
+      {{ $key }}: {{ $value | quote }}
+      {{- end }}
+      annotations:
+      {{- range $key, $value := .Values.app.annotations }}
+      {{ $key }}: {{ $value | quote }}
+      {{- end }}
+    spec:
+      containers:
+        - name: redis
+          image: redis:7.4.0
+          {{- if .Values.app.resources.redis }}
+          resources:
+            {{- toYaml .Values.app.resources.redis | nindent 12 }}
+          {{- end }}
+          ports:
+            - containerPort: 6379
+          {{ if .Values.app.redis.pvc.enabled }}
+          volumeMounts:
+            - name: redis-data-dir
+              mountPath: /data/redis
+          {{ end }}
+      {{ if .Values.app.redis.pvc.enabled }}
+      volumes:
+        - name: redis-data-dir
+          persistentVolumeClaim:
+            claimName: redis-pvc
+      {{ end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
