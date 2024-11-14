@@ -48,6 +48,21 @@ entries:
     version: "1"
   promyze:
   - apiVersion: v2
+    appVersion: 5.2.0
+    created: "2024-11-14T20:45:12.178169584Z"
+    description: Elevate developers and code with Packmind
+    digest: e45e772b1bf1cde7b82c286f95a5f75fa8017dcde7c037876e76a5e8dd147be4
+    home: https://github.com/promyze/helm-charts
+    icon: https://packmind.com/wp-content/uploads/2024/01/LogoMark_Packmind.png
+    maintainers:
+    - email: cedric.teyton@packmind.com
+      name: cteyton
+    name: promyze
+    type: application
+    urls:
+    - https://github.com/promyze/helm-charts/releases/download/promyze-1.2.0/promyze-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v2
     appVersion: 5.1.0
     created: "2024-09-10T13:13:21.780774471Z"
     description: Elevate developers and code with Packmind
@@ -451,4 +466,20 @@ entries:
     urls:
     - https://github.com/promyze/helm-charts/releases/download/promyze-0.1.0/promyze-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-12T14:46:47.727581039Z"
+  sso-cryptr:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-11-14T20:45:12.331864813Z"
+    description: Leverage SSO in Packmind
+    digest: 2e679af4434958fb45fd7d39acb3a0520b8b749732bf066323bd60da937df59d
+    home: https://github.com/promyze/helm-charts
+    icon: https://packmind.com/wp-content/uploads/2024/01/LogoMark_Packmind.png
+    maintainers:
+    - email: cedric.teyton@packmind.com
+      name: cteyton
+    name: sso-cryptr
+    type: application
+    urls:
+    - https://github.com/promyze/helm-charts/releases/download/sso-cryptr-1.0.0/sso-cryptr-1.0.0.tgz
+    version: 1.0.0
+generated: "2024-11-14T20:45:12.332046174Z"
