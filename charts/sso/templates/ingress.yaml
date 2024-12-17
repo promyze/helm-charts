@@ -35,7 +35,7 @@ spec:
         {{- range $value := .Values.ingress.hostnames }}
         - {{ $value | quote }}
         {{- end }}
-      {{- if and .Values.ingress.tls.secrets .Values.ingress.tls.secrets.app }}
+      {{- if and .Values.ingress.tls.secrets .Values.ingress.tls.secrets.secretName }}
       secretName: {{ $.Values.ingress.tls.secrets.secretName }}
       {{- end }}
   {{- end }}
