@@ -1,5 +1,6 @@
 # downloaded charts
 charts/*/charts
+.idea
 .kubeconfig
 charts/sso/values-*
 charts/sso/.env.*
