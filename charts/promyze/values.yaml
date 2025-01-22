@@ -3,8 +3,8 @@
     api: promyze/promyze-api
     proxy: promyze/promyze-proxy
     suggestions: promyze/promyze-suggestions
-    aiagent: promyze/packmind-ai-agent
-    tag: 5.2.0  # comment this if the images below are custom and contain already a tag
+    aiagent: promyze/packmind-aiagent
+    tag: 5.4.2  # comment this if the images below are custom and contain already a tag
     imagePullPolicy: Always
     # secret:
       # name: docker-registry-key
