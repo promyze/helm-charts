@@ -1,8 +1,8 @@
 apiVersion: v2
 name: promyze
 type: application
-version: 1.4.2
-appVersion: 5.4.2
+version: 1.4.3
+appVersion: 5.4.3
 description: Elevate developers and code with Packmind
 home: https://github.com/promyze/helm-charts
 maintainers:
