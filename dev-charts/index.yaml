@@ -2,8 +2,23 @@ apiVersion: v1
 entries:
   promyze:
   - apiVersion: v2
+    appVersion: 6.0.0
+    created: "2025-03-04T08:21:19.669759962Z"
+    description: Elevate developers and code with Packmind
+    digest: 5def169a9038d26503224fbf507683218f5aa1d2ff27de63f5864dcc0f672c3b
+    home: https://github.com/promyze/helm-charts
+    icon: https://packmind.com/wp-content/uploads/2024/01/LogoMark_Packmind.png
+    maintainers:
+    - email: cedric.teyton@packmind.com
+      name: cteyton
+    name: promyze
+    type: application
+    urls:
+    - https://raw.githubusercontent.com/promyze/helm-charts/dev/dev-charts/promyze-2.0.0.tgz
+    version: 2.0.0
+  - apiVersion: v2
     appVersion: 5.4.4
-    created: "2025-02-11T10:19:14.987956047Z"
+    created: "2025-03-04T08:21:19.669309758Z"
     description: Elevate developers and code with Packmind
     digest: 58a4f0b330050b151b388442898b09423225480cf9a29ee4eab5e53df5dbf920
     home: https://github.com/promyze/helm-charts
@@ -18,7 +33,7 @@ entries:
     version: 1.4.4
   - apiVersion: v2
     appVersion: 5.4.3
-    created: "2025-02-11T10:19:14.986737352Z"
+    created: "2025-03-04T08:21:19.668851528Z"
     description: Elevate developers and code with Packmind
     digest: 3e190d4fe921892a0a6593d407777a0f76f2d54b2e4c40c74ad6d88f42a9d378
     home: https://github.com/promyze/helm-charts
@@ -33,7 +48,7 @@ entries:
     version: 1.4.3
   - apiVersion: v2
     appVersion: 5.2.0
-    created: "2025-02-11T10:19:14.986149627Z"
+    created: "2025-03-04T08:21:19.668405452Z"
     description: Elevate developers and code with Packmind
     digest: 323790753c93d43b09b89d3e6f07891f2d83bb4c1d82833e61da6fca8b15d0d8
     home: https://github.com/promyze/helm-charts
@@ -48,7 +63,7 @@ entries:
     version: 1.2.0
   - apiVersion: v2
     appVersion: 5.1.0
-    created: "2025-02-11T10:19:14.985691834Z"
+    created: "2025-03-04T08:21:19.667936081Z"
     description: Elevate developers and code with Packmind
     digest: 70d4c7286753d1423cef264ea439c95f199b9396be602081a194cf78ce1a6511
     home: https://github.com/promyze/helm-charts
@@ -61,4 +76,4 @@ entries:
     urls:
     - https://raw.githubusercontent.com/promyze/helm-charts/dev/dev-charts/promyze-1.2.0-dev.tgz
     version: 1.2.0-dev
-generated: "2025-02-11T10:19:14.985198725Z"
+generated: "2025-03-04T08:21:19.667403874Z"
