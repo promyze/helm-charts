@@ -1,0 +1,82 @@
+﻿apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: promyze
+  namespace: packmind
+  uid: 7949ae13-8dbc-438b-b47e-1ec9f88effc6
+  resourceVersion: '322579350'
+  generation: 3
+  creationTimestamp: '2024-11-26T10:44:39Z'
+  labels:
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    meta.helm.sh/release-name: packmind
+    meta.helm.sh/release-namespace: packmind
+  selfLink: /apis/networking.k8s.io/v1/namespaces/packmind/ingresses/promyze
+status:
+  loadBalancer: {}
+spec:
+  ingressClassName: tailscale
+  tls:
+    - hosts:
+        - packmind
+  rules:
+    - host: packmind
+      http:
+        paths:
+          - path: /api/plugin
+            pathType: Prefix
+            backend:
+              service:
+                name: promyze-suggestions
+                port:
+                  number: 3000
+          - path: /api/suggestion
+            pathType: Prefix
+            backend:
+              service:
+                name: promyze-suggestions
+                port:
+                  number: 3000
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: promyze-api
+                port:
+                  number: 3000
+          - path: /open
+            pathType: Prefix
+            backend:
+              service:
+                name: promyze-api
+                port:
+                  number: 3000
+          - path: /auth
+            pathType: Prefix
+            backend:
+              service:
+                name: promyze-api
+                port:
+                  number: 3000
+          - path: /public
+            pathType: Prefix
+            backend:
+              service:
+                name: promyze-api
+                port:
+                  number: 3000
+          - path: /techcoach
+            pathType: Prefix
+            backend:
+              service:
+                name: promyze-suggestions
+                port:
+                  number: 3000
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: front
+                port:
+                  number: 80
