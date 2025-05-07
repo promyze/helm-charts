@@ -7,14 +7,14 @@ Since May 2025, a new Helm Chart is available for Packmind AI: [https://github.c
 
 If you **have not yet deployed** Packmind, you should check this Helm Chart instead.
 
-If you **have already deployed** Packmind, you can still continue to use this chart, but make sure you use the latest image.
+If you **have already deployed** Packmind, you can still continue to use this chart, but make sure you use the latest images.
 This repository will still be maintained for current users at least until the end of 2025.
 
-## New Docker images since May 2025 7h
+## New Docker images since May 2025 7th
 
-The release of Packmind AI has introduced a new versioning starting from 1.0.0.
+The release of Packmind AI (ex-Packmind) has introduced a new versioning starting from 1.0.0.
 
-The `values.yaml` has been updated to use new Docker images. If you've overridden your images, you should consider this migration:
+The `values.yaml` has been updated to use new Docker images. If you've overridden these images, you should consider this migration:
 
 | Until Helm Chart 2.0.1 | Since Helm Chart 3.0.0        |
 |------------------------|-------------------------------|
