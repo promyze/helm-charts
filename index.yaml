@@ -48,6 +48,21 @@ entries:
     version: "1"
   promyze:
   - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-05-07T16:13:45.430788982Z"
+    description: Elevate developers and code with Packmind
+    digest: 665e86b7c994a8a7330f7acd6ece89447b7aaa72b51833ab4c5a3f4aff2d7b26
+    home: https://github.com/promyze/helm-charts
+    icon: https://packmind.com/wp-content/uploads/2024/01/LogoMark_Packmind.png
+    maintainers:
+    - email: cedric.teyton@packmind.com
+      name: cteyton
+    name: promyze
+    type: application
+    urls:
+    - https://github.com/promyze/helm-charts/releases/download/promyze-3.0.0/promyze-3.0.0.tgz
+    version: 3.0.0
+  - apiVersion: v2
     appVersion: 6.0.1
     created: "2025-03-10T13:11:22.213633978Z"
     description: Elevate developers and code with Packmind
@@ -587,4 +602,4 @@ entries:
     urls:
     - https://github.com/promyze/helm-charts/releases/download/sso-cryptr-1.0.0/sso-cryptr-1.0.0.tgz
     version: 1.0.0
-generated: "2025-03-10T13:11:22.213988516Z"
+generated: "2025-05-07T16:13:45.431170895Z"
