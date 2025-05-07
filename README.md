@@ -1,4 +1,29 @@
+
 ![Packmind](CoverPackmind.png)
+
+# ⚠️ Repository Status
+
+Since May 2025, a new Helm Chart is available for Packmind AI: [https://github.com/PackmindHub/packmind-helm-chart](https://github.com/PackmindHub/packmind-helm-chart).
+
+If you **have not yet deployed** Packmind, you should check this Helm Chart instead.
+
+If you **have already deployed** Packmind, you can still continue to use this chart, but make sure you use the latest image.
+This repository will still be maintained for current users at least until the end of 2025.
+
+## New Docker images since May 2025 7h
+
+The release of Packmind AI has introduced a new versioning starting from 1.0.0.
+
+The `values.yaml` has been updated to use new Docker images. If you've overridden your images, you should consider this migration:
+
+| Until Helm Chart 2.0.1 | Since Helm Chart 3.0.0        |
+|------------------------|-------------------------------|
+| `promyze/promyze-api` | `packmind/packmind-api`       |
+| `promyze/promyze-proxy` | `packmind/packmind-proxy`     |
+| `promyze/promyze-suggestions` | `packmind/packmind-detection` |
+| `promyze/packmind-aiagent` | `packmind/packmind-ai-agent`   |
+
+New releases of the Chart will include the new images tags.
 
 # Helm chart for Packmind (ex-Promyze)
 

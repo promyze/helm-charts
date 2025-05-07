@@ -1,10 +1,10 @@
 ﻿app:
   images:
-    api: promyze/promyze-api
-    proxy: promyze/promyze-proxy
-    suggestions: promyze/promyze-suggestions
-    aiagent: promyze/packmind-aiagent
-    tag: 6.0.1  # comment this if the images below are custom and contain already a tag
+    api: packmind/packmind-api
+    proxy: packmind/packmind-proxy
+    suggestions: packmind/packmind-detection
+    aiagent: packmind/packmind-ai-agent
+    tag: 1.0.0
     imagePullPolicy: Always
     # secret:
       # name: docker-registry-key
@@ -44,7 +44,7 @@
     # secret:
     #   name: mongodb-secret
     #   key: mongodb-uri
-  variables:  # check the list on https://hub.docker.com/r/promyze/promyze
+  variables: {} # check the list on https://hub.docker.com/r/promyze/promyze
     # PROMYZE_URL: http://my.promyze.com
   secrets:  # env variables injected from secrets
   # - envVariable: THEMIS_AUTH_CONFIG_ADMIN_PASSWORD
