@@ -1,10 +1,10 @@
 ﻿app:
   images:
-    api: packmind/packmind-api
-    proxy: packmind/packmind-proxy
-    suggestions: packmind/packmind-detection
-    aiagent: packmind/packmind-ai-agent
-    tag: 1.0.0
+    api: promyze/promyze-api
+    proxy: promyze/promyze-proxy
+    suggestions: promyze/promyze-suggestions
+    aiagent: promyze/packmind-aiagent
+    tag: 5.2.0
     imagePullPolicy: Always
     # secret:
       # name: docker-registry-key
@@ -71,7 +71,7 @@
     aiagent:
       limits:
         cpu: "1000m"
-        memory: "2Gi"
+        memory: "256Mi"
       requests:
         cpu: "500m"
         memory: "256Mi"
