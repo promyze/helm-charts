@@ -1,10 +1,10 @@
 ﻿app:
   images:
-    api: promyze/promyze-api
-    proxy: promyze/promyze-proxy
-    suggestions: promyze/promyze-suggestions
-    aiagent: promyze/packmind-aiagent
-    tag: 5.2.0
+    api: packmind/packmind-api
+    proxy: packmind/packmind-proxy
+    suggestions: packmind/packmind-detection
+    aiagent: packmind/packmind-ai-agent
+    tag: 1.1.0
     imagePullPolicy: Always
     # secret:
       # name: docker-registry-key
