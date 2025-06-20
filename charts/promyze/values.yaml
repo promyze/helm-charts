@@ -4,7 +4,7 @@
     proxy: packmind/packmind-proxy
     suggestions: packmind/packmind-detection
     aiagent: packmind/packmind-ai-agent
-    tag: 1.1.0
+    tag: 1.2.0
     imagePullPolicy: Always
     # secret:
       # name: docker-registry-key
